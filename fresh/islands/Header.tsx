@@ -5,13 +5,13 @@ import ProfileIcon from "../components/ProfileIcon.tsx";
 
 export default function Header() {
   return (
-    <div class="flex flex-row justify-between w-full">
+    <div class="flex flex-row justify-around items-center w-full h-16">
       <h1>Ticket4You</h1>
-      <DropDown title="Events"></DropDown>
-      <DropDown title="Locations"></DropDown>
+      <DropDown title="Events" menu={[{ title: "Test", href: "/" }]}></DropDown>
+      <DropDown title="Locations" menu={[{ title: "a", href: "/" }]}></DropDown>
       <SearchBar></SearchBar>
       <CalendarIcon></CalendarIcon>
-      <ProfileIcon></ProfileIcon>
+      <ProfileIcon name="User"></ProfileIcon>
     </div>
   );
 }
