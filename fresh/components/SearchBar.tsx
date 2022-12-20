@@ -1,3 +1,8 @@
+import * as React from "preact";
 export default function SearchBar() {
-  return <h1>SearchBar</h1>;
+  return (
+    <div>
+      <input placeholder="Search . . ."></input>
+    </div>
+  );
 }

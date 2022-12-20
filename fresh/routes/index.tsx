@@ -1,3 +1,5 @@
+import * as React from "preact";
+
 import Footer from "../islands/Footer.tsx";
 import Header from "../islands/Header.tsx";
 import Slider from "../islands/Slider.tsx";
