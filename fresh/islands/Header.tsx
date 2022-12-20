@@ -8,7 +8,7 @@ import ProfileIcon from "../components/ProfileIcon.tsx";
 export default function Header() {
   return (
     <div class="flex flex-row justify-around items-center w-full h-16">
-      <h1>Ticket4You</h1>
+      <h1 class="font-mono font-bold text-3xl">Ticket4You</h1>
       <DropDown
         title="Events"
         menu={[

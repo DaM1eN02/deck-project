@@ -77,10 +77,10 @@ function Card({ title, subtitle, description, image }: Slide) {
       style={"background-image:linear-gradient(rgba(0, 0, 40, 0.8),rgba(0, 0, 40, 0.8)), url(" +
         image + ");"}
     >
-      <div class="font-mono text-5xl">{title}</div>
+      <div class="font-mono text-5xl text-white">{title}</div>
       <hr></hr>
-      <div class="font-mono text-4xl">{subtitle}</div>
-      <div class="font-mono text-1xl">{description}</div>
+      <div class="font-mono text-4xl text-white">{subtitle}</div>
+      <div class="font-mono text-1xl text-white">{description}</div>
     </div>
   );
 }

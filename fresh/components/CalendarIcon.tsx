@@ -4,7 +4,7 @@ import IconCalendar from "https://deno.land/x/tabler_icons_tsx@0.0.2/tsx/calenda
 export default function CalendarIcon() {
   return (
     <a href="/calendar">
-      <IconCalendar>
+      <IconCalendar size={32}>
       </IconCalendar>
     </a>
   );

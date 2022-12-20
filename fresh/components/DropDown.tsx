@@ -1,5 +1,4 @@
 import * as React from "preact";
-import { useState } from "preact/hooks";
 import IconCaretDown from "https://deno.land/x/tabler_icons_tsx@0.0.2/tsx/caret-down.tsx";
 
 type Props = {
@@ -22,17 +21,22 @@ export default function DropDown({ title, menu }: Props) {
           );
         }}
       >
-        <h1>{title}</h1>
+        <h1 class="font-mono font-bold text-2xl">{title}</h1>
         <IconCaretDown></IconCaretDown>
       </div>
       <ul
         id={"dropdownContent" + title}
-        class="z-10 absolute hidden"
+        class="z-10 absolute hidden border bg-white"
       >
         {menu.map((item) => {
           return (
             <li class="m-auto">
-              <a href={item.href}>{item.title}</a>
+              <a
+                class="font-mono font-bold text-3xl"
+                href={item.href}
+              >
+                {item.title}
+              </a>
             </li>
           );
         })}
