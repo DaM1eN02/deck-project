@@ -9,7 +9,7 @@ export default function ProfileIcon({ name }: Props) {
   return (
     <div class="flex flex-row">
       <IconUserCircle size={32}></IconUserCircle>
-      <h1 class="font-mono font-bold text-2xl">{name}</h1>
+      <h1 class="font-bold text-2xl">{name}</h1>
     </div>
   );
 }

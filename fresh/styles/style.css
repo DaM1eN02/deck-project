@@ -1,0 +1,8 @@
+.tiltRight {
+  transform: perspective(100px) rotateX(45deg);
+  
+}
+
+.tiltLeft {
+  transform: perspective(100px) rotateX(-45deg);
+}

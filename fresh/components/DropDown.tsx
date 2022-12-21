@@ -21,7 +21,7 @@ export default function DropDown({ title, menu }: Props) {
           );
         }}
       >
-        <h1 class="font-mono font-bold text-2xl">{title}</h1>
+        <h1 class="font-bold text-2xl">{title}</h1>
         <IconCaretDown></IconCaretDown>
       </div>
       <ul
@@ -32,7 +32,7 @@ export default function DropDown({ title, menu }: Props) {
           return (
             <li class="m-auto">
               <a
-                class="font-mono font-bold text-3xl"
+                class="font-bold text-3xl"
                 href={item.href}
               >
                 {item.title}

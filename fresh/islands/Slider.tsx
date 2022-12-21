@@ -1,6 +1,31 @@
 import * as React from "preact";
-
 import Button from "../components/Button.tsx";
+import { useState } from "preact/hooks";
+
+import { apply, tw } from "twind";
+import { animation, css } from "twind/css";
+
+const nonePicture = css({
+  display: "none",
+});
+
+const leftPicture = css({
+  display: "block",
+  transform:
+    "translateX(-100%) rotate3d(0, 1, 0, 45deg) skewY(3deg) scale(.75)",
+  filter: "blur(0.25rem)",
+});
+
+const centerPicture = css({
+  display: "block",
+});
+
+const rightPicture = css({
+  display: "block",
+  transform:
+    "translateX(100%) rotate3d(0, 1, 0, -45deg) skewY(-3deg) scale(.75)",
+  filter: "blur(0.25rem)",
+});
 
 type Slide = {
   children: never[];
@@ -8,6 +33,7 @@ type Slide = {
   subtitle: string;
   description: string;
   image: string;
+  id: number;
 };
 
 const slides = [
@@ -48,39 +74,144 @@ const slides = [
   },
 ];
 
+let currentSlideCount = 0;
+let leftIndex = slides.length - 1;
+let rightIndex = currentSlideCount + 1;
+
 export default function Slider() {
   return (
-    <div class="h-screen flex content-center">
-      <Button left={true}></Button>
-      <div class="w-full flex justify-around content-center">
-        {slides.map((card) => {
+    <div
+      class="h-screen flex content-center bg-no-repeat bg-cover bg-center"
+      style={"background-image:linear-gradient(rgba(0, 0, 40, 0.8),rgba(0, 0, 40, 0.8)), url(" +
+        slides[currentSlideCount].image + ");"}
+    >
+      <div
+        class="w-1/12 flex justify-center content-center"
+        onClick={() => {
+          document.getElementById(`slide${rightIndex}`)?.classList.remove(
+            tw`${rightPicture}`,
+          );
+          document.getElementById(`slide${rightIndex}`)?.classList.add(
+            tw`${nonePicture}`,
+          );
+
+          currentSlideCount = currentSlideCount > 0
+            ? currentSlideCount - 1
+            : slides.length - 1;
+          leftIndex = leftIndex > 0 ? leftIndex - 1 : slides.length - 1;
+          rightIndex = rightIndex > 0 ? rightIndex - 1 : slides.length - 1;
+
+          document.getElementById(`slide${rightIndex}`)?.classList.remove(
+            tw`${centerPicture}`,
+          );
+          document.getElementById(`slide${rightIndex}`)?.classList.add(
+            tw`${rightPicture}`,
+          );
+
+          document.getElementById(`slide${currentSlideCount}`)?.classList
+            .remove(
+              tw`${leftPicture}`,
+            );
+          document.getElementById(`slide${currentSlideCount}`)?.classList.add(
+            tw`${centerPicture}`,
+          );
+
+          document.getElementById(`slide${leftIndex}`)?.classList.remove(
+            tw`${nonePicture}`,
+          );
+          document.getElementById(`slide${leftIndex}`)?.classList.add(
+            tw`${leftPicture}`,
+          );
+        }}
+      >
+        <Button left={true}></Button>
+      </div>
+      <div class="w-10/12 flex justify-around">
+        {slides.map((slide, index) => {
           return (
             <Card
-              title={card.title}
-              subtitle={card.subtitle}
-              description={card.description}
-              image={card.image}
+              id={index}
+              title={slide.title}
+              subtitle={slide.subtitle}
+              description={slide.description}
+              image={slide.image}
             >
             </Card>
           );
         })}
       </div>
-      <Button left={false}></Button>
+      <div
+        class="w-1/12"
+        onClick={() => {
+          document.getElementById(`slide${leftIndex}`)?.classList.remove(
+            tw`${leftPicture}`,
+          );
+          document.getElementById(`slide${leftIndex}`)?.classList.add(
+            tw`${nonePicture}`,
+          );
+
+          currentSlideCount = currentSlideCount < slides.length - 1
+            ? currentSlideCount + 1
+            : 0;
+          leftIndex = leftIndex < slides.length - 1 ? leftIndex + 1 : 0;
+          rightIndex = rightIndex < slides.length - 1 ? rightIndex + 1 : 0;
+
+          document.getElementById(`slide${leftIndex}`)?.classList.remove(
+            tw`${centerPicture}`,
+          );
+          document.getElementById(`slide${leftIndex}`)?.classList.add(
+            tw`${leftPicture}`,
+          );
+
+          document.getElementById(`slide${currentSlideCount}`)?.classList
+            .remove(
+              tw`${rightPicture}`,
+            );
+          document.getElementById(`slide${currentSlideCount}`)?.classList.add(
+            tw`${centerPicture}`,
+          );
+
+          document.getElementById(`slide${rightIndex}`)?.classList.remove(
+            tw`${nonePicture}`,
+          );
+          document.getElementById(`slide${rightIndex}`)?.classList.add(
+            tw`${rightPicture}`,
+          );
+        }}
+      >
+        <Button left={false}></Button>
+      </div>
     </div>
   );
 }
 
-function Card({ title, subtitle, description, image }: Slide) {
+function Card({ title, subtitle, description, image, id }: Slide) {
+  const leftIndex = currentSlideCount > 0
+    ? currentSlideCount - 1
+    : slides.length - 1;
+  const rightIndex = currentSlideCount < slides.length - 1
+    ? currentSlideCount + 1
+    : 0;
+
   return (
     <div
-      class="h-96 w-64 p-2"
-      style={"background-image:linear-gradient(rgba(0, 0, 40, 0.8),rgba(0, 0, 40, 0.8)), url(" +
-        image + ");"}
+      id={"slide" + id}
+      class={tw`w-1/4 h-1/2 p-2 bg-center absolute transition-all ease-out duration-500 ${
+        id == leftIndex ? leftPicture : ""
+      } ${id == currentSlideCount ? centerPicture : ""} ${
+        id == rightIndex ? rightPicture : ""
+      } ${
+        (id != leftIndex && id != currentSlideCount && id != rightIndex)
+          ? nonePicture
+          : ""
+      }
+      }`}
+      style={"background-image:url(" + image + ");"}
     >
-      <div class="font-mono text-5xl text-white">{title}</div>
+      <div class="text-5xl text-white">{title}</div>
       <hr></hr>
-      <div class="font-mono text-4xl text-white">{subtitle}</div>
-      <div class="font-mono text-1xl text-white">{description}</div>
+      <div class="text-4xl text-white">{subtitle}</div>
+      <div class="text-1xl text-white">{description}</div>
     </div>
   );
 }
