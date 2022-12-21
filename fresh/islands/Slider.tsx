@@ -1,30 +1,35 @@
 import * as React from "preact";
 import Button from "../components/Button.tsx";
-import { useState } from "preact/hooks";
-
-import { apply, tw } from "twind";
-import { animation, css } from "twind/css";
+import { tw } from "twind";
+import { css } from "twind/css";
 
 const nonePicture = css({
-  display: "none",
+  display: "block",
+  zIndex: "0",
+  transform: "translateY(50%) scale(.25)",
+  filter: "blur(0.4rem)",
 });
 
 const leftPicture = css({
   display: "block",
   transform:
-    "translateX(-100%) rotate3d(0, 1, 0, 45deg) skewY(3deg) scale(.75)",
-  filter: "blur(0.25rem)",
+    "translateX(-100%) translateY(50%) rotate3d(0, 1, 0, 45deg) skewY(3deg) scale(.75)",
+  filter: "blur(0.2rem)",
+  zIndex: "1",
 });
 
 const centerPicture = css({
   display: "block",
+  transform: "translateY(50%)",
+  zIndex: "2",
 });
 
 const rightPicture = css({
   display: "block",
   transform:
-    "translateX(100%) rotate3d(0, 1, 0, -45deg) skewY(-3deg) scale(.75)",
-  filter: "blur(0.25rem)",
+    "translateX(100%) translateY(50%) rotate3d(0, 1, 0, -45deg) skewY(-3deg) scale(.75)",
+  filter: "blur(0.2rem)",
+  zIndex: "1",
 });
 
 type Slide = {
@@ -81,12 +86,13 @@ let rightIndex = currentSlideCount + 1;
 export default function Slider() {
   return (
     <div
+      id="sliderBackground"
       class="h-screen flex content-center bg-no-repeat bg-cover bg-center"
-      style={"background-image:linear-gradient(rgba(0, 0, 40, 0.8),rgba(0, 0, 40, 0.8)), url(" +
-        slides[currentSlideCount].image + ");"}
+      style={"background-image:linear-gradient(rgba(0, 0, 40, 0.5),rgba(0, 0, 40, 0.5)), url(" +
+        slides[currentSlideCount].image + "); backdrop-filter:blur(1)"}
     >
       <div
-        class="w-1/12 flex justify-center content-center"
+        class="w-1/12 grid content-center"
         onClick={() => {
           document.getElementById(`slide${rightIndex}`)?.classList.remove(
             tw`${rightPicture}`,
@@ -126,7 +132,7 @@ export default function Slider() {
       >
         <Button left={true}></Button>
       </div>
-      <div class="w-10/12 flex justify-around">
+      <div class="w-10/12 flex content-center justify-around">
         {slides.map((slide, index) => {
           return (
             <Card
@@ -141,7 +147,7 @@ export default function Slider() {
         })}
       </div>
       <div
-        class="w-1/12"
+        class="w-1/12 grid content-center"
         onClick={() => {
           document.getElementById(`slide${leftIndex}`)?.classList.remove(
             tw`${leftPicture}`,
@@ -177,6 +183,15 @@ export default function Slider() {
           document.getElementById(`slide${rightIndex}`)?.classList.add(
             tw`${rightPicture}`,
           );
+
+          const background = document.getElementById(`sliderBackground`);
+          if (background) {
+            background.style.backgroundImage =
+              `linear-gradient(rgba(0, 0, 40, 0.5),rgba(0, 0, 40, 0.5)), url(${
+                slides[currentSlideCount].image
+              }`;
+            background.style.backdropFilter = "blur(1)";
+          }
         }}
       >
         <Button left={false}></Button>
