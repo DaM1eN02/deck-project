@@ -3,21 +3,27 @@
 // This file is automatically updated during development when running `dev.ts`.
 
 import config from "./deno.json" assert { type: "json" };
-import * as $0 from "./routes/[name].tsx";
+import * as $0 from "./routes/calendar.tsx";
 import * as $1 from "./routes/index.tsx";
-import * as $$0 from "./islands/Footer.tsx";
-import * as $$1 from "./islands/Header.tsx";
-import * as $$2 from "./islands/Slider.tsx";
+import * as $2 from "./routes/profile/[name].tsx";
+import * as $3 from "./routes/search/[string].tsx";
+import * as $$0 from "./islands/Calendar.tsx";
+import * as $$1 from "./islands/Footer.tsx";
+import * as $$2 from "./islands/Header.tsx";
+import * as $$3 from "./islands/Slider.tsx";
 
 const manifest = {
   routes: {
-    "./routes/[name].tsx": $0,
+    "./routes/calendar.tsx": $0,
     "./routes/index.tsx": $1,
+    "./routes/profile/[name].tsx": $2,
+    "./routes/search/[string].tsx": $3,
   },
   islands: {
-    "./islands/Footer.tsx": $$0,
-    "./islands/Header.tsx": $$1,
-    "./islands/Slider.tsx": $$2,
+    "./islands/Calendar.tsx": $$0,
+    "./islands/Footer.tsx": $$1,
+    "./islands/Header.tsx": $$2,
+    "./islands/Slider.tsx": $$3,
   },
   baseUrl: import.meta.url,
   config,

@@ -8,30 +8,36 @@ import ProfileIcon from "../components/ProfileIcon.tsx";
 export default function Header() {
   return (
     <div class="flex flex-row justify-around items-center w-full h-16">
-      <h1 class="font-bold text-3xl">Ticket4You</h1>
+      <a href="/">
+        <h1 class="font-bold text-3xl">Ticket4You</h1>
+      </a>
       <DropDown
         title="Events"
         menu={[
-          { title: "Skifahren", href: "/skifahren" },
-          { title: "Konzerte", href: "/konzerte" },
-          { title: "Freizeit", href: "/freizeit" },
-          { title: "Sport", href: "/sport" },
+          { title: "Skifahren", href: "/search/skifahren" },
+          { title: "Konzerte", href: "/search/konzerte" },
+          { title: "Freizeit", href: "/search/freizeit" },
+          { title: "Sport", href: "/search/sport" },
         ]}
       >
       </DropDown>
       <DropDown
         title="Locations"
         menu={[
-          { title: "Deutschland", href: "/germany" },
-          { title: "Österreich", href: "/austria" },
-          { title: "Schweiz", href: "/switzerland" },
-          { title: "Frankreich", href: "/france" },
+          { title: "Deutschland", href: "/search/germany" },
+          { title: "Österreich", href: "search//austria" },
+          { title: "Schweiz", href: "/search/switzerland" },
+          { title: "Frankreich", href: "/search/france" },
         ]}
       >
       </DropDown>
       <SearchBar></SearchBar>
-      <CalendarIcon></CalendarIcon>
-      <ProfileIcon name="User"></ProfileIcon>
+      <a href="/calendar">
+        <CalendarIcon></CalendarIcon>
+      </a>
+      <a href="/profile/User">
+        <ProfileIcon name="User"></ProfileIcon>
+      </a>
     </div>
   );
 }

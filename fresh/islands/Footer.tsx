@@ -1,4 +1,4 @@
 import * as React from "preact";
 export default function Footer() {
-  return <></>;
+  return <div class="h-32 bg-gray-500"></div>;
 }

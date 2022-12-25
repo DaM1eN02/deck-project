@@ -6,28 +6,28 @@ import { css } from "twind/css";
 const nonePicture = css({
   display: "block",
   zIndex: "0",
-  transform: "translateY(50%) scale(.25)",
+  transform: "scale(.25)",
   filter: "blur(0.4rem)",
 });
 
 const leftPicture = css({
   display: "block",
   transform:
-    "translateX(-100%) translateY(50%) rotate3d(0, 1, 0, 45deg) skewY(3deg) scale(.75)",
+    "translateX(-100%) rotate3d(0, 1, 0, 45deg) skewY(3deg) scale(.75)",
   filter: "blur(0.2rem)",
   zIndex: "1",
 });
 
 const centerPicture = css({
   display: "block",
-  transform: "translateY(50%)",
+  transform: "",
   zIndex: "2",
 });
 
 const rightPicture = css({
   display: "block",
   transform:
-    "translateX(100%) translateY(50%) rotate3d(0, 1, 0, -45deg) skewY(-3deg) scale(.75)",
+    "translateX(100%) rotate3d(0, 1, 0, -45deg) skewY(-3deg) scale(.75)",
   filter: "blur(0.2rem)",
   zIndex: "1",
 });
@@ -83,11 +83,15 @@ let currentSlideCount = 0;
 let leftIndex = slides.length - 1;
 let rightIndex = currentSlideCount + 1;
 
+const height = css({
+  height: "calc(100vh - 4rem - 8rem)",
+});
+
 export default function Slider() {
   return (
     <div
       id="sliderBackground"
-      class="h-screen flex content-center bg-no-repeat bg-cover bg-center"
+      class={tw`${height} flex content-center bg-no-repeat bg-cover bg-center`}
       style={"background-image:linear-gradient(rgba(0, 0, 40, 0.5),rgba(0, 0, 40, 0.5)), url(" +
         slides[currentSlideCount].image + "); backdrop-filter:blur(1)"}
     >
@@ -133,18 +137,20 @@ export default function Slider() {
         <Button left={true}></Button>
       </div>
       <div class="w-10/12 flex content-center justify-around">
-        {slides.map((slide, index) => {
-          return (
-            <Card
-              id={index}
-              title={slide.title}
-              subtitle={slide.subtitle}
-              description={slide.description}
-              image={slide.image}
-            >
-            </Card>
-          );
-        })}
+        <div class="w-full flex justify-center items-center">
+          {slides.map((slide, index) => {
+            return (
+              <Card
+                id={index}
+                title={slide.title}
+                subtitle={slide.subtitle}
+                description={slide.description}
+                image={slide.image}
+              >
+              </Card>
+            );
+          })}
+        </div>
       </div>
       <div
         class="w-1/12 grid content-center"

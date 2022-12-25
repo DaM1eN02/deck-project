@@ -10,7 +10,7 @@ type Props = {
 export default function Button({ left }: Props) {
   const Icon = left ? IconChevronLeft : IconChevronRight;
   return (
-    <div class="flex justify-center content-center">
+    <div class="flex justify-center content-center cursor-pointer">
       <Icon size={64} color="white"></Icon>
     </div>
   );
