@@ -118,6 +118,15 @@ export default function Slider() {
           document.getElementById(`slide${leftIndex}`)?.classList.add(
             tw`${leftPicture}`,
           );
+
+          const background = document.getElementById(`background`);
+          if (background) {
+            background.style.backgroundImage =
+              `linear-gradient(rgba(0, 0, 40, 0.5),rgba(0, 0, 40, 0.5)), url(${
+                slides[currentSlideCount].image
+              }`;
+            background.style.backdropFilter = "blur(1)";
+          }
         }}
       >
         <Button left={true} color="white"></Button>
@@ -203,7 +212,7 @@ function Card({ title, subtitle, description, image, id }: Slide) {
   return (
     <div
       id={"slide" + id}
-      class={tw`w-1/5 h-1/3 p-2 bg-center absolute transition-all ease-out duration-500 ${
+      class={tw`w-1/5 h-1/3 p-2 flex bg-center absolute transition-all ease-out duration-700 ${
         id == leftIndex ? leftPicture : ""
       } ${id == currentSlideCount ? centerPicture : ""} ${
         id == rightIndex ? rightPicture : ""
@@ -213,13 +222,16 @@ function Card({ title, subtitle, description, image, id }: Slide) {
           : ""
       }
       } hover:ring-8`}
-      style={"background-image:url(" + image + ");"}
+      style={"background-image:url(" + image + ")"}
     >
       <div class="p-2" style={"background-color: rgba(255, 255, 255, 0.75)"}>
         <div class="text-4xl">{title}</div>
         <hr></hr>
         <div class="text-3xl">{subtitle}</div>
         <div class="text-1xl">{description}</div>
+      </div>
+      <div class="flex justify-center self-end">
+        <a class="bg-white" href={`/event/${id}`}>Zum Angebot</a>
       </div>
     </div>
   );

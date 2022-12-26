@@ -2,10 +2,10 @@ import * as React from "preact";
 export default function Footer() {
   return (
     <div
-      class="w-full h-32 grid grid-cols-3 items-center"
+      class="w-full h-32 p-2 grid grid-cols-3 items-center"
       style={"background-image: linear-gradient(90deg, rgb(6 182 212), rgb(59 130 246))"}
     >
-      <div class="">
+      <div>
         Ticket4You
       </div>
       <div class="flex justify-around">
