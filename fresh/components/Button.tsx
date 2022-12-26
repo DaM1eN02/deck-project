@@ -5,13 +5,14 @@ import IconChevronLeft from "https://deno.land/x/tabler_icons_tsx@0.0.2/tsx/chev
 
 type Props = {
   left: boolean;
+  color: string;
 };
 
-export default function Button({ left }: Props) {
+export default function Button({ left, color }: Props) {
   const Icon = left ? IconChevronLeft : IconChevronRight;
   return (
     <div class="flex justify-center content-center cursor-pointer">
-      <Icon size={64} color="white"></Icon>
+      <Icon size={64} color={color}></Icon>
     </div>
   );
 }

@@ -26,7 +26,8 @@ export default function DropDown({ title, menu }: Props) {
       </div>
       <ul
         id={"dropdownContent" + title}
-        class="z-10 absolute hidden border bg-white"
+        class="z-10 absolute hidden border"
+        style={"background-color: rgba(255, 255, 255, 0.5)"}
       >
         {menu.map((item) => {
           return (

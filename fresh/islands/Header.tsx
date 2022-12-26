@@ -7,7 +7,10 @@ import ProfileIcon from "../components/ProfileIcon.tsx";
 
 export default function Header() {
   return (
-    <div class="flex flex-row justify-around items-center w-full h-16">
+    <div
+      class="flex flex-row justify-around items-center w-full h-32"
+      style={"background-color: rgba(255, 255, 255, 0.25)"}
+    >
       <a href="/">
         <h1 class="font-bold text-3xl">Ticket4You</h1>
       </a>

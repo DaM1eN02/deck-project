@@ -20,7 +20,6 @@ const leftPicture = css({
 
 const centerPicture = css({
   display: "block",
-  transform: "",
   zIndex: "2",
 });
 
@@ -43,39 +42,32 @@ type Slide = {
 
 const slides = [
   {
-    title: "Machu Picchu",
-    subtitle: "Peru",
+    title: "Ischgl",
+    subtitle: "Austria",
     description: "Adventure is never far away",
     image:
-      "https://images.unsplash.com/photo-1571771019784-3ff35f4f4277?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ",
+      "https://res.cloudinary.com/j2ski/albums/u44159/20200312/ischgl-im-winter",
   },
   {
-    title: "Chamonix",
-    subtitle: "France",
+    title: "Wagrain",
+    subtitle: "Austria",
     description: "Let your dreams come true",
     image:
-      "https://images.unsplash.com/photo-1581836499506-4a660b39478a?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ",
+      "https://th.bing.com/th/id/R.de95e607fcfe957e32c671ae46ce6d7c?rik=c0kgCFsKaamrcg&pid=ImgRaw&r=0",
   },
   {
-    title: "Mimisa Rocks",
-    subtitle: "Australia",
+    title: "Zermatt",
+    subtitle: "Switzerland",
     description: "A piece of heaven",
     image:
-      "https://images.unsplash.com/photo-1566522650166-bd8b3e3a2b4b?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ",
+      "https://th.bing.com/th/id/R.69bc4aeb7d73b0888ac9d954a19262e5?rik=cqA0eVZHhp6FMA&riu=http%3a%2f%2fcdn.justluxe.com%2farticles%2fimages%2fnews%2fshutterstock_254090041.jpg&ehk=hdbqYVj3jpk8mYnlbqkLIVt2NDH7VySp4c0cQRtrWeU%3d&risl=&pid=ImgRaw&r=0",
   },
   {
-    title: "Four",
-    subtitle: "Australia",
+    title: "Oberwallis",
+    subtitle: "Switzerland",
     description: "A piece of heaven",
     image:
-      "https://images.unsplash.com/flagged/photo-1564918031455-72f4e35ba7a6?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ",
-  },
-  {
-    title: "Five",
-    subtitle: "Australia",
-    description: "A piece of heaven",
-    image:
-      "https://images.unsplash.com/photo-1579130781921-76e18892b57b?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ",
+      "https://th.bing.com/th/id/OIP.O3VLujsHNvUO0wEzJKrMRwHaE8?pid=ImgDet&rs=1",
   },
 ];
 
@@ -83,17 +75,11 @@ let currentSlideCount = 0;
 let leftIndex = slides.length - 1;
 let rightIndex = currentSlideCount + 1;
 
-const height = css({
-  height: "calc(100vh - 4rem - 8rem)",
-});
-
 export default function Slider() {
   return (
     <div
       id="sliderBackground"
-      class={tw`${height} flex content-center bg-no-repeat bg-cover bg-center`}
-      style={"background-image:linear-gradient(rgba(0, 0, 40, 0.5),rgba(0, 0, 40, 0.5)), url(" +
-        slides[currentSlideCount].image + "); backdrop-filter:blur(1)"}
+      class={tw`h-5/6 flex content-center bg-no-repeat bg-cover bg-center`}
     >
       <div
         class="w-1/12 grid content-center"
@@ -134,7 +120,7 @@ export default function Slider() {
           );
         }}
       >
-        <Button left={true}></Button>
+        <Button left={true} color="white"></Button>
       </div>
       <div class="w-10/12 flex content-center justify-around">
         <div class="w-full flex justify-center items-center">
@@ -190,7 +176,7 @@ export default function Slider() {
             tw`${rightPicture}`,
           );
 
-          const background = document.getElementById(`sliderBackground`);
+          const background = document.getElementById(`background`);
           if (background) {
             background.style.backgroundImage =
               `linear-gradient(rgba(0, 0, 40, 0.5),rgba(0, 0, 40, 0.5)), url(${
@@ -200,7 +186,7 @@ export default function Slider() {
           }
         }}
       >
-        <Button left={false}></Button>
+        <Button left={false} color="white"></Button>
       </div>
     </div>
   );
@@ -217,7 +203,7 @@ function Card({ title, subtitle, description, image, id }: Slide) {
   return (
     <div
       id={"slide" + id}
-      class={tw`w-1/4 h-1/2 p-2 bg-center absolute transition-all ease-out duration-500 ${
+      class={tw`w-1/5 h-1/3 p-2 bg-center absolute transition-all ease-out duration-500 ${
         id == leftIndex ? leftPicture : ""
       } ${id == currentSlideCount ? centerPicture : ""} ${
         id == rightIndex ? rightPicture : ""
@@ -226,13 +212,15 @@ function Card({ title, subtitle, description, image, id }: Slide) {
           ? nonePicture
           : ""
       }
-      }`}
+      } hover:ring-8`}
       style={"background-image:url(" + image + ");"}
     >
-      <div class="text-5xl text-white">{title}</div>
-      <hr></hr>
-      <div class="text-4xl text-white">{subtitle}</div>
-      <div class="text-1xl text-white">{description}</div>
+      <div class="p-2" style={"background-color: rgba(255, 255, 255, 0.75)"}>
+        <div class="text-4xl">{title}</div>
+        <hr></hr>
+        <div class="text-3xl">{subtitle}</div>
+        <div class="text-1xl">{description}</div>
+      </div>
     </div>
   );
 }
