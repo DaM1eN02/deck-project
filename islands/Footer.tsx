@@ -21,7 +21,7 @@ export default function Footer() {
         </div>
         <div>
           <div>Profil</div>
-          <div>Anmelden</div>
+          <a href="/login">Anmelden</a>
           <div>Registrieren</div>
         </div>
         <div>

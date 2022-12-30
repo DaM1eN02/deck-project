@@ -1,4 +1,4 @@
-import qrcode from "qrgen/qrcode.js";
+import qrcode from "./node_modules/qrcode-generator/qrcode.js";
 
 export function createQrCodeAsDataUrl(data: string) {
   // create a QR code object
