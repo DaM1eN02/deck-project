@@ -36,7 +36,7 @@ const tickets: TicketType[] = [{
 
 export default function TicketGrid() {
   return (
-    <div class="w-9/12 m-auto grid grid-cols-4 justify-items-center gap-8">
+    <div class="w-9/12 m-auto grid grid-cols-3 justify-items-center gap-8">
       {tickets.map((ticket) => {
         return (
           <Ticket

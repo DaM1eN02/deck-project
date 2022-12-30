@@ -17,10 +17,12 @@
   },
   "homepage": "https://github.com/DaM1eN02/deck-project#readme",
   "devDependencies": {
+    "@types/qrcode-generator": "^1.0.6",
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.9"
   },
   "dependencies": {
+    "qrcode-generator": "^1.4.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }

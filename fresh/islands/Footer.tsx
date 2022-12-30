@@ -16,7 +16,7 @@ export default function Footer() {
         </div>
         <div>
           <div>B2B</div>
-          <div>B2B-Portal</div>
+          <a href="/b2b">B2B-Portal</a>
           <div>Informationen</div>
         </div>
         <div>
