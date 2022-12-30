@@ -8,8 +8,10 @@ type Props = {
 export default function ProfileIcon({ name }: Props) {
   return (
     <div class="flex flex-row">
-      <IconUserCircle size={32}></IconUserCircle>
-      <h1 class="font-bold text-2xl">{name}</h1>
+      <IconUserCircle></IconUserCircle>
+      <h1 class="font-bold text-xs sm:text-sm md:text-md lg:text-lg xl:text-xl 2xl-text-2xl">
+        {name}
+      </h1>
     </div>
   );
 }
