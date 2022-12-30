@@ -9,13 +9,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/react-dom": "^18.0.10",
-    "html5-qrcode": "^2.3.4",
+    "qr-scanner": "^1.4.2",
     "qrcode-generator": "^1.4.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/react": "^18.0.26"
+    "@types/react": "^18.0.26",
+    "@types/react-dom": "^18.0.10"
   }
 }

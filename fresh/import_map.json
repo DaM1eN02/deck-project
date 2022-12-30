@@ -9,8 +9,6 @@
     "twind": "https://esm.sh/twind@0.16.17",
     "twind/": "https://esm.sh/twind@0.16.17/",
     "qrgen": "./node_modules/qrcode-generator",
-    "qrgen/": "./node_modules/qrcode-generator/",
-    "qrread": "./node_modules/html5-qrcode",
-    "qrread/": "./node_modules/html5-qrcode/"
+    "qrgen/": "./node_modules/qrcode-generator/"
   }
 }
