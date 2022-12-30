@@ -1,16 +1,13 @@
-import { createRequire } from "https://deno.land/std@0.170.0/node/module.ts";
-
-const require = createRequire(import.meta.url);
-const Html5QrcodeScanner = require("./node_modules/html5-qrcode");
+// import { Html5QrcodeScanner } from "qrread/cjs/html5-qrcode-scanner.js";
 
 export default function scanner() {
-  console.log("Scanning");
-  const html5QrcodeScanner = new Html5QrcodeScanner(
-    "reader",
-    { fps: 10, qrbox: { width: 250, height: 250 } },
-    /* verbose= */ false,
-  );
-  html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+  // console.log("Scanning");
+  // const html5QrcodeScanner = new Html5QrcodeScanner(
+  //   "reader",
+  //   { fps: 10, qrbox: { width: 250, height: 250 } },
+  //   /* verbose= */ false,
+  // );
+  // html5QrcodeScanner.render(onScanSuccess, onScanFailure);
 }
 
 function onScanSuccess(decodedText: string, decodedResult: string) {
