@@ -1,9 +1,9 @@
 import { createRequire } from "https://deno.land/std@0.170.0/node/module.ts";
 
 const require = createRequire(import.meta.url);
-const Html5QrcodeScanner = require("html5-qrcode");
+const Html5QrcodeScanner = require("./node_modules/html5-qrcode");
 
-export function scanner() {
+export default function scanner() {
   console.log("Scanning");
   const html5QrcodeScanner = new Html5QrcodeScanner(
     "reader",

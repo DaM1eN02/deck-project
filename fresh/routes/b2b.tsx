@@ -1,6 +1,6 @@
 import * as React from "preact";
 import { createQrCodeAsDataUrl } from "../qrcode.ts";
-import { scanner } from "../qrcode_scanner.ts";
+import scanner from "../qrcode_scanner.ts";
 
 // test the function
 const dataUrl: string = createQrCodeAsDataUrl(
