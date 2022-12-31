@@ -1,15 +1,18 @@
-import * as React from "preact";
-
 import DropDown from "../components/DropDown.tsx";
 import SearchBar from "../components/SearchBar.tsx";
 import CalendarIcon from "../components/CalendarIcon.tsx";
 import ProfileIcon from "../components/ProfileIcon.tsx";
+import { css, tw } from "https://esm.sh/v99/twind@0.16.17/css/css";
+
+const height = css({
+  height: "calc(66.6% * 0.166)",
+});
 
 export default function Header() {
   return (
     <div
-      class="flex flex-row justify-around items-center h-32"
-      style={"background-color: rgba(255, 255, 255, 0.25)"}
+      class={tw`fixed ${height} flex flex-row justify-around items-center object-fit w-full text-white`}
+      style={"background-color: rgba(0, 0, 0, 0.5)"}
     >
       <a href="/">
         <h1 class="font-bold text-xs sm:text-sm md:text-md lg:text-lg xl:text-xl 2xl-text-2xl">

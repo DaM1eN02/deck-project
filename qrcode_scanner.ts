@@ -7,6 +7,7 @@ export async function scan() {
     (result: { data: string }) => onResult(qrScanner, result.data),
     {/* your options or returnDetailedScanResult: true if you're not specifying any other options */},
   );
+
   qrScanner.start();
 }
 

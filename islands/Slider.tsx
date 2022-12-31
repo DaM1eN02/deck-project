@@ -1,4 +1,3 @@
-import * as React from "preact";
 import Button from "../components/Button.tsx";
 import { tw } from "twind";
 import { css } from "twind/css";
@@ -31,15 +30,6 @@ const rightPicture = css({
   zIndex: "1",
 });
 
-type Slide = {
-  children: never[];
-  title: string;
-  subtitle: string;
-  description: string;
-  image: string;
-  id: number;
-};
-
 const slides = [
   {
     title: "Ischgl",
@@ -71,15 +61,14 @@ const slides = [
   },
 ];
 
-let currentSlideCount = 0;
-let leftIndex = slides.length - 1;
-let rightIndex = currentSlideCount + 1;
-
 export default function Slider() {
+  let currentIndex = 0;
+  let leftIndex = slides.length - 1;
+  let rightIndex = currentIndex + 1;
+
   return (
     <div
-      id="sliderBackground"
-      class={tw`h-5/6 flex content-center bg-no-repeat bg-cover bg-center`}
+      class={tw`flex content-center bg-cover bg-center`}
     >
       <div
         class="w-1/12 grid content-center"
@@ -91,8 +80,8 @@ export default function Slider() {
             tw`${nonePicture}`,
           );
 
-          currentSlideCount = currentSlideCount > 0
-            ? currentSlideCount - 1
+          currentIndex = currentIndex > 0
+            ? currentIndex - 1
             : slides.length - 1;
           leftIndex = leftIndex > 0 ? leftIndex - 1 : slides.length - 1;
           rightIndex = rightIndex > 0 ? rightIndex - 1 : slides.length - 1;
@@ -104,11 +93,11 @@ export default function Slider() {
             tw`${rightPicture}`,
           );
 
-          document.getElementById(`slide${currentSlideCount}`)?.classList
+          document.getElementById(`slide${currentIndex}`)?.classList
             .remove(
               tw`${leftPicture}`,
             );
-          document.getElementById(`slide${currentSlideCount}`)?.classList.add(
+          document.getElementById(`slide${currentIndex}`)?.classList.add(
             tw`${centerPicture}`,
           );
 
@@ -123,7 +112,7 @@ export default function Slider() {
           if (background) {
             background.style.backgroundImage =
               `linear-gradient(rgba(0, 0, 40, 0.5),rgba(0, 0, 40, 0.5)), url(${
-                slides[currentSlideCount].image
+                slides[currentIndex].image
               }`;
             background.style.backdropFilter = "blur(1)";
           }
@@ -136,11 +125,16 @@ export default function Slider() {
           {slides.map((slide, index) => {
             return (
               <Card
-                id={index}
-                title={slide.title}
-                subtitle={slide.subtitle}
-                description={slide.description}
-                image={slide.image}
+                slide={{
+                  id: index,
+                  title: slide.title,
+                  subtitle: slide.subtitle,
+                  image: slide.image,
+                  description: slide.description,
+                }}
+                currentIndex={currentIndex}
+                leftIndex={leftIndex}
+                rightIndex={rightIndex}
               >
               </Card>
             );
@@ -157,8 +151,8 @@ export default function Slider() {
             tw`${nonePicture}`,
           );
 
-          currentSlideCount = currentSlideCount < slides.length - 1
-            ? currentSlideCount + 1
+          currentIndex = currentIndex < slides.length - 1
+            ? currentIndex + 1
             : 0;
           leftIndex = leftIndex < slides.length - 1 ? leftIndex + 1 : 0;
           rightIndex = rightIndex < slides.length - 1 ? rightIndex + 1 : 0;
@@ -170,11 +164,11 @@ export default function Slider() {
             tw`${leftPicture}`,
           );
 
-          document.getElementById(`slide${currentSlideCount}`)?.classList
+          document.getElementById(`slide${currentIndex}`)?.classList
             .remove(
               tw`${rightPicture}`,
             );
-          document.getElementById(`slide${currentSlideCount}`)?.classList.add(
+          document.getElementById(`slide${currentIndex}`)?.classList.add(
             tw`${centerPicture}`,
           );
 
@@ -189,7 +183,7 @@ export default function Slider() {
           if (background) {
             background.style.backgroundImage =
               `linear-gradient(rgba(0, 0, 40, 0.5),rgba(0, 0, 40, 0.5)), url(${
-                slides[currentSlideCount].image
+                slides[currentIndex].image
               }`;
             background.style.backdropFilter = "blur(1)";
           }
@@ -201,37 +195,45 @@ export default function Slider() {
   );
 }
 
-function Card({ title, subtitle, description, image, id }: Slide) {
-  const leftIndex = currentSlideCount > 0
-    ? currentSlideCount - 1
-    : slides.length - 1;
-  const rightIndex = currentSlideCount < slides.length - 1
-    ? currentSlideCount + 1
-    : 0;
+type SlideProps = {
+  children: [];
+  slide: {
+    title: string;
+    subtitle: string;
+    description: string;
+    image: string;
+    id: number;
+  };
+  currentIndex: number;
+  leftIndex: number;
+  rightIndex: number;
+};
 
+function Card({ slide, currentIndex, leftIndex, rightIndex }: SlideProps) {
   return (
     <div
-      id={"slide" + id}
-      class={tw`w-1/5 h-1/3 p-2 flex bg-center absolute transition-all ease-out duration-700 ${
-        id == leftIndex ? leftPicture : ""
-      } ${id == currentSlideCount ? centerPicture : ""} ${
-        id == rightIndex ? rightPicture : ""
+      id={"slide" + slide.id}
+      class={tw`w-1/5 h-2/3 p-2 flex bg-center absolute transition-all ease-out duration-700 ${
+        slide.id == leftIndex ? leftPicture : ""
+      } ${slide.id == currentIndex ? centerPicture : ""} ${
+        slide.id == rightIndex ? rightPicture : ""
       } ${
-        (id != leftIndex && id != currentSlideCount && id != rightIndex)
+        (slide.id != leftIndex && slide.id != currentIndex &&
+            slide.id != rightIndex)
           ? nonePicture
           : ""
       }
       } hover:ring-8`}
-      style={"background-image:url(" + image + ")"}
+      style={"background-image:url(" + slide.image + ")"}
     >
       <div class="p-2" style={"background-color: rgba(255, 255, 255, 0.75)"}>
-        <div class="text-4xl">{title}</div>
+        <div class="text-4xl">{slide.title}</div>
         <hr></hr>
-        <div class="text-3xl">{subtitle}</div>
-        <div class="text-1xl">{description}</div>
+        <div class="text-3xl">{slide.subtitle}</div>
+        <div class="text-1xl">{slide.description}</div>
       </div>
       <div class="flex justify-center self-end">
-        <a class="bg-white" href={`/event/${id}`}>Zum Angebot</a>
+        <a class="bg-white" href={`/event/${slide.id}`}>Zum Angebot</a>
       </div>
     </div>
   );
