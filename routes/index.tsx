@@ -1,3 +1,5 @@
+import * as React from "preact";
+
 import { css, tw } from "https://esm.sh/v99/twind@0.16.17/css/css";
 import Footer from "../islands/Footer.tsx";
 import Header from "../islands/Header.tsx";
