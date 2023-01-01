@@ -2,7 +2,8 @@ import DropDown from "../components/DropDown.tsx";
 import SearchBar from "../components/SearchBar.tsx";
 import CalendarIcon from "../components/CalendarIcon.tsx";
 import ProfileIcon from "../components/ProfileIcon.tsx";
-import { css, tw } from "https://esm.sh/v99/twind@0.16.17/css/css";
+import { tw } from "twind";
+import { css } from "twind/css";
 
 const height = css({
   height: "calc(66.6% * 0.166)",
