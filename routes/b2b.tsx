@@ -1,4 +1,3 @@
-import * as React from "preact";
 import Header from "../islands/Header.tsx";
 import Scanner from "../islands/Scanner.tsx";
 import { createQrCodeAsDataUrl } from "../qrcode.ts";

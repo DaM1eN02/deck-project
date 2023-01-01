@@ -1,4 +1,3 @@
-import * as React from "preact";
 import { PageProps } from "$fresh/server.ts";
 import Header from "../../islands/Header.tsx";
 import Footer from "../../islands/Footer.tsx";

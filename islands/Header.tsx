@@ -1,5 +1,3 @@
-import * as React from "preact";
-
 import DropDown from "../components/DropDown.tsx";
 import SearchBar from "../components/SearchBar.tsx";
 import CalendarIcon from "../components/CalendarIcon.tsx";

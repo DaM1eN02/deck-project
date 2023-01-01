@@ -1,5 +1,3 @@
-import * as React from "preact";
-
 import IconChevronRight from "https://deno.land/x/tabler_icons_tsx@0.0.2/tsx/chevron-right.tsx";
 import IconChevronLeft from "https://deno.land/x/tabler_icons_tsx@0.0.2/tsx/chevron-left.tsx";
 

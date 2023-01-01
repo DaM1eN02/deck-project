@@ -1,4 +1,3 @@
-import * as React from "preact";
 import IconCaretDown from "https://deno.land/x/tabler_icons_tsx@0.0.2/tsx/caret-down.tsx";
 
 type Props = {

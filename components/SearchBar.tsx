@@ -1,4 +1,3 @@
-import * as React from "preact";
 export default function SearchBar() {
   return (
     <div>

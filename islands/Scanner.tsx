@@ -1,4 +1,3 @@
-import * as React from "preact";
 import * as scanner from "../qrcode_scanner.ts";
 import { useRef } from "preact/hooks";
 

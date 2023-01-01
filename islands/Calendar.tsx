@@ -1,5 +1,3 @@
-import * as React from "preact";
-
 const month = [[{
   weekday: "MON",
   date: "01",

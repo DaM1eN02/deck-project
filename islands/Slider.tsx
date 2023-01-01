@@ -1,4 +1,3 @@
-import * as React from "preact";
 import Button from "../components/Button.tsx";
 import { tw } from "twind";
 import { css } from "twind/css";

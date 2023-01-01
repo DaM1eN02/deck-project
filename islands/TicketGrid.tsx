@@ -1,5 +1,3 @@
-import * as React from "preact";
-
 type TicketType = {
   children?: never[];
   id: string;
