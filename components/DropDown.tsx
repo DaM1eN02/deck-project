@@ -11,7 +11,7 @@ type Props = {
 
 export default function DropDown({ title, menu }: Props) {
   return (
-    <div>
+    <div class="hidden sm:block">
       <div
         class="z-0 inline-flex place-self-center"
         onClick={() => {

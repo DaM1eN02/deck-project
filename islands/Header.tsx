@@ -12,7 +12,7 @@ const height = css({
 export default function Header() {
   return (
     <div
-      class={tw`fixed ${height} flex flex-row justify-around items-center object-fit w-full text-white`}
+      class={tw`fixed ${height} flex flex-row justify-around items-center w-screen text-white`}
       style={"background-color: rgba(0, 0, 0, 0.5)"}
     >
       <a href="/">

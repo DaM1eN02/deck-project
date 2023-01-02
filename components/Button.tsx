@@ -6,11 +6,10 @@ type Props = {
   color: string;
 };
 
-export default function Button({ left, color }: Props) {
+export function Button({ left, color }: Props) {
   const Icon = left ? IconChevronLeft : IconChevronRight;
   return (
-    <div class="flex justify-center content-center cursor-pointer">
-      <Icon size={64} color={color}></Icon>
-    </div>
+    <Icon size={64} stroke={4} color={color}>
+    </Icon>
   );
 }

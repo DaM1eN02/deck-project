@@ -1,4 +1,4 @@
-import Button from "../components/Button.tsx";
+import { Button } from "../components/Button.tsx";
 import { tw } from "twind";
 import { css } from "twind/css";
 
@@ -71,7 +71,7 @@ export default function Slider() {
       class={tw`flex content-center bg-cover bg-center`}
     >
       <div
-        class="w-1/12 grid content-center"
+        class="z-10 w-1/12 grid content-center justify-center hover:sm:border cursor-pointer"
         onClick={() => {
           document.getElementById(`slide${rightIndex}`)?.classList.remove(
             tw`${rightPicture}`,
@@ -120,8 +120,8 @@ export default function Slider() {
       >
         <Button left={true} color="white"></Button>
       </div>
-      <div class="w-10/12 flex content-center justify-around">
-        <div class="w-full flex justify-center items-center">
+      <div class="z-0 w-10/12 flex content-center justify-around">
+        <div class="overflow-auto w-full flex justify-center items-center">
           {slides.map((slide, index) => {
             return (
               <Card
@@ -142,7 +142,7 @@ export default function Slider() {
         </div>
       </div>
       <div
-        class="w-1/12 grid content-center"
+        class="z-10 w-1/12 grid content-center justify-center hover:sm:border cursor-pointer"
         onClick={() => {
           document.getElementById(`slide${leftIndex}`)?.classList.remove(
             tw`${leftPicture}`,
@@ -213,17 +213,16 @@ function Card({ slide, currentIndex, leftIndex, rightIndex }: SlideProps) {
   return (
     <div
       id={"slide" + slide.id}
-      class={tw`w-1/5 h-2/3 p-2 flex bg-center absolute transition-all ease-out duration-700 ${
-        slide.id == leftIndex ? leftPicture : ""
-      } ${slide.id == currentIndex ? centerPicture : ""} ${
-        slide.id == rightIndex ? rightPicture : ""
-      } ${
+      class={tw`w-3/5 sm:w-2/5 lg:w-1/5 h-2/3 p-2 flex bg-center absolute transition-all ease-out duration-700 ${
         (slide.id != leftIndex && slide.id != currentIndex &&
             slide.id != rightIndex)
           ? nonePicture
           : ""
-      }
-      } hover:ring-8`}
+      } ${slide.id == leftIndex ? leftPicture : ""} ${
+        slide.id == currentIndex ? centerPicture : ""
+      } ${slide.id == rightIndex ? rightPicture : ""} ${
+        slide.id == currentIndex ? "hover:ring-4" : ""
+      }`}
       style={"background-image:url(" + slide.image + ")"}
     >
       <div class="p-2" style={"background-color: rgba(255, 255, 255, 0.75)"}>
@@ -232,7 +231,9 @@ function Card({ slide, currentIndex, leftIndex, rightIndex }: SlideProps) {
         <div class="text-3xl">{slide.subtitle}</div>
         <div class="text-1xl">{slide.description}</div>
       </div>
-      <div class="flex justify-center self-end">
+      <div
+        class={tw`flex justify-center self-end`}
+      >
         <a class="bg-white" href={`/event/${slide.id}`}>Zum Angebot</a>
       </div>
     </div>
