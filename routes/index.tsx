@@ -41,7 +41,7 @@ const bottom = css({
 
 export default function Home() {
   return (
-    <div class="font-mono h-screen overflow-hidden">
+    <div class="font-mono h-screen overflow-hidden overflow-y-scroll">
       <div
         id="background"
         class="h-2/3 bg-cover relative"
