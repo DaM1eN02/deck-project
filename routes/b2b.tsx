@@ -3,7 +3,7 @@ import Scanner from "../islands/Scanner.tsx";
 import { createQrCodeAsDataUrl } from "../qrcode.ts";
 
 const dataUrl: string = createQrCodeAsDataUrl(
-  "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+  "1",
 );
 
 export default function B2B() {

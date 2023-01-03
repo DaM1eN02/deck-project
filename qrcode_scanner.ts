@@ -1,4 +1,5 @@
 import QrScanner from "./node_modules/qr-scanner/qr-scanner.min.js";
+
 export async function scan() {
   if (!await QrScanner.hasCamera()) return;
 
@@ -11,7 +12,10 @@ export async function scan() {
   qrScanner.start();
 }
 
-function onResult(qrScanner: QrScanner, result: string) {
-  document.open(result);
+async function onResult(qrScanner: QrScanner, result: string) {
+  const res = await fetch(
+    `https://ticket4youdhbw.onrender.com/api/ticket/status/${result}`,
+  );
+  console.log(res);
   qrScanner.stop();
 }
