@@ -1,6 +1,8 @@
+import { useRef } from "preact/hooks";
 import { Button } from "../components/Button.tsx";
 import { tw } from "twind";
 import { css } from "twind/css";
+import { VanillaTilt } from "../tilt.js";
 
 const nonePicture = css({
   display: "block",
@@ -29,6 +31,8 @@ const rightPicture = css({
   filter: "blur(0.2rem)",
   zIndex: "1",
 });
+
+const cssClass = css({});
 
 const slides = [
   {
@@ -210,10 +214,13 @@ type SlideProps = {
 };
 
 function Card({ slide, currentIndex, leftIndex, rightIndex }: SlideProps) {
+  useRef(null);
   return (
     <div
       id={"slide" + slide.id}
       class={tw`w-3/5 sm:w-2/5 lg:w-1/5 h-2/3 p-2 flex bg-center absolute transition-all ease-out duration-700 ${
+        slide.id == currentIndex ? cssClass : ""
+      } ${
         (slide.id != leftIndex && slide.id != currentIndex &&
             slide.id != rightIndex)
           ? nonePicture
@@ -238,4 +245,29 @@ function Card({ slide, currentIndex, leftIndex, rightIndex }: SlideProps) {
       </div>
     </div>
   );
+}
+
+window.onload = () => {
+  tilting();
+};
+
+function tilting() {
+  const tilt = document.querySelectorAll(".tw-yviiib");
+
+  VanillaTilt.init(tilt, {
+    reverse: true,
+    max: 15,
+    speed: 400,
+    scale: 1.12,
+    glare: true,
+    reset: true,
+    perspective: 500,
+    transition: true,
+    "max-glare": 0.75,
+    "glare-prerender": false,
+    gyroscopeMinAngleX: -45,
+    gyroscopeMaxAngleX: 45,
+    gyroscopeMinAngleY: -45,
+    gyroscopeMaxAngleY: 45,
+  });
 }

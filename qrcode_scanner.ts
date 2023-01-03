@@ -12,6 +12,6 @@ export async function scan() {
 }
 
 function onResult(qrScanner: QrScanner, result: string) {
-  window.open(result);
+  document.open(result);
   qrScanner.stop();
 }

@@ -42,9 +42,10 @@ const bottom = css({
 export default function Home() {
   return (
     <div class="font-mono h-screen overflow-hidden overflow-y-scroll">
+      <style src="../style.css"></style>
       <div
         id="background"
-        class="h-2/3 bg-cover relative"
+        class="h-2/3 bg-cover relative transition ease-out duration-500"
         style={"background-image:linear-gradient(rgba(0, 0, 40, 0.5),rgba(0, 0, 40, 0.5)), url(https://res.cloudinary.com/j2ski/albums/u44159/20200312/ischgl-im-winter)"}
       >
         <Header></Header>
@@ -71,14 +72,14 @@ type Slide = {
 
 function Event(slide: Slide) {
   return (
-    <div class="w-10/12 h-64 m-auto border flex items-center gap-8 odd:justify-start even:justify-end">
+    <div class="w-10/12 h-64 m-auto border flex items-center gap-8 odd:flex-row even:flex-row-reverse">
       <div
         class="h-64 w-64 rounded-full bg-center hover:scale-125 transition ease-out duration-500"
         style={`background-image:url(${slide.image})`}
       >
       </div>
       <div class="flex flex-col items-center">
-        <div>{slide.title}</div>
+        <div class="pointer-events-none">{slide.title}</div>
         <div>{slide.subtitle}</div>
         <div>{slide.description}</div>
       </div>
