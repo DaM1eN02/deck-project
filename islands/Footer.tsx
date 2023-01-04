@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
     <div
-      class="w-full h-32 p-2 grid grid-cols-6 items-center text-xs sm:text-sm md:text-md lg:text-lg xl:text-xl 2xl-text-2xl"
+      class="w-full h-32 p-2 grid grid-cols-6 items-center text-xs sm:text-sm md:text-md lg:text-lg xl:text-xl 2xl-text-2xl overflow-x-hidden"
       style={"background-image: linear-gradient(90deg, #8fc0c8, #caecee)"}
     >
       <div>

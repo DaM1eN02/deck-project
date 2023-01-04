@@ -13,9 +13,26 @@ export async function scan() {
 }
 
 async function onResult(qrScanner: QrScanner, result: string) {
+  console.log(result);
   const res = await fetch(
     `https://ticket4youdhbw.onrender.com/api/ticket/status/${result}`,
   );
-  console.log(res);
+  const obj = await res.json();
+  const doc = document.getElementById("bg");
+  if (!doc) {
+    return;
+  }
+  if (obj.active == true) {
+    doc.style.background = "#00FF00";
+    doc.style.opacity = "0.5";
+    setTimeout(() => {
+      doc.style.background = "0000000";
+    }, 1000);
+  } else {
+    doc.style.background = "#FF0000";
+    setTimeout(() => {
+      doc.style.background = "0000000";
+    }, 1000);
+  }
   qrScanner.stop();
 }

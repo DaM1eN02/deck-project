@@ -1,3 +1,5 @@
+import { createQrCodeAsDataUrl } from "../qrcode.ts";
+
 type TicketType = {
   children?: never[];
   id: string;
@@ -51,13 +53,31 @@ export default function TicketGrid() {
 }
 
 function Ticket({ id, name, event, image }: TicketType) {
+  const dataUrl: string = createQrCodeAsDataUrl(
+    id,
+  );
   return (
     <div
-      class="w-full bg-center bg-cover"
+      class="w-full bg-center bg-cover flex flex-col items-center justify-center"
       style={"background-image:url(" + image + "); aspect-ratio: 1 / 1"}
+      onClick={() => {
+        document.getElementById(id)?.classList.toggle("hidden");
+      }}
     >
-      <div>{name}</div>
-      <div>{event}</div>
+      <div style="background: rgba(0, 0, 0, 0.7);">
+        <div>{name}</div>
+        <div>{event}</div>
+      </div>
+      <div
+        id={id}
+        class="hidden z-40 w-full h-full fixed top-0 left-0 flex items-center justify-center"
+        style="background: rgba(0, 0, 0, 0.7);"
+      >
+        <div class="z-50 flex flex-col content-center items-center w-1/2 h-1/2 bg-white">
+          <h1>SCAN TO VERIFY</h1>
+          <img src={dataUrl} class="h-2/3 m-auto" alt="QR-Code"></img>
+        </div>
+      </div>
     </div>
   );
 }

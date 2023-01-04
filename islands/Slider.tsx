@@ -31,8 +31,6 @@ const rightPicture = css({
   zIndex: "1",
 });
 
-const cssClass = css({});
-
 const slides = [
   {
     title: "Ischgl",
@@ -74,7 +72,7 @@ export default function Slider() {
       class={tw`flex content-center bg-cover bg-center`}
     >
       <div
-        class="z-10 w-1/12 grid content-center justify-center hover:sm:border cursor-pointer"
+        class="w-1/12 grid content-center justify-center hover:sm:border cursor-pointer"
         onClick={() => {
           document.getElementById(`slide${rightIndex}`)?.classList.remove(
             tw`${rightPicture}`,
@@ -123,7 +121,7 @@ export default function Slider() {
       >
         <Button left={true} color="white"></Button>
       </div>
-      <div class="z-0 w-10/12 flex content-center justify-around">
+      <div class="w-10/12 flex content-center justify-around">
         <div class="overflow-auto w-full flex justify-center items-center">
           {slides.map((slide, index) => {
             return (
@@ -217,8 +215,6 @@ function Card({ slide, currentIndex, leftIndex, rightIndex }: SlideProps) {
     <div
       id={"slide" + slide.id}
       class={tw`w-3/5 sm:w-2/5 lg:w-1/5 h-2/3 p-2 flex bg-center absolute transition-all ease-out duration-700 ${
-        slide.id == currentIndex ? cssClass : ""
-      } ${
         (slide.id != leftIndex && slide.id != currentIndex &&
             slide.id != rightIndex)
           ? nonePicture

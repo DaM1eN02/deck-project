@@ -5,7 +5,7 @@ import TicketGrid from "../../islands/TicketGrid.tsx";
 
 export default function Profile(props: PageProps) {
   return (
-    <div class="font-mono h-screen">
+    <div class="font-mono h-screen overflow-x-hidden">
       <Header></Header>
       <div class="m-2">
         <div class="flex">

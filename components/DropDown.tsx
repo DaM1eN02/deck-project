@@ -2,6 +2,7 @@ import IconCaretDown from "https://deno.land/x/tabler_icons_tsx@0.0.2/tsx/caret-
 
 type Props = {
   children: never[];
+  id: string;
   title: string;
   menu: {
     title: string;
@@ -9,25 +10,49 @@ type Props = {
   }[];
 };
 
-export default function DropDown({ title, menu }: Props) {
+export default function DropDown({ id, title, menu }: Props) {
   return (
     <div class="hidden sm:block">
       <div
-        class="z-0 inline-flex place-self-center"
+        id={id}
+        class="inline-flex place-self-center"
         onClick={() => {
           document.getElementById("dropdownContent" + title)?.classList.toggle(
             "hidden",
           );
+
+          document.addEventListener("click", (e) => {
+            if (!e.target) return;
+            if (
+              //@ts-ignore
+              e.target.id != "dropdownContent" + title &&
+              //@ts-ignore
+              e.target.id.includes(id) == false
+            ) {
+              if (
+                document.getElementById("dropdownContent" + title)?.classList
+                  .contains("hidden") == false
+              ) {
+                document.getElementById("dropdownContent" + title)?.classList
+                  .add(
+                    "hidden",
+                  );
+              }
+            }
+          });
         }}
       >
-        <h1 class="font-bold text-xs sm:text-sm md:text-md lg:text-lg xl:text-xl 2xl-text-2xl">
+        <h1
+          id={id + `title`}
+          class="font-bold text-xs sm:text-sm md:text-md lg:text-lg xl:text-xl 2xl-text-2xl"
+        >
           {title}
         </h1>
         <IconCaretDown></IconCaretDown>
       </div>
       <ul
         id={"dropdownContent" + title}
-        class="z-10 absolute hidden border"
+        class="z-50 absolute hidden border"
         style={"background-color: rgba(255, 255, 255, 0.5)"}
       >
         {menu.map((item) => {

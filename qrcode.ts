@@ -11,5 +11,5 @@ export function createQrCodeAsDataUrl(data: string) {
   qr.make();
 
   // create an image from the QR code data and return it as a data URL
-  return qr.createDataURL(4, 0);
+  return qr.createDataURL(16, 16);
 }
