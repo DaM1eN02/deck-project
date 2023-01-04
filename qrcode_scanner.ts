@@ -34,5 +34,4 @@ async function onResult(qrScanner: QrScanner, result: string) {
       doc.style.background = "0000000";
     }, 1000);
   }
-  qrScanner.stop();
 }

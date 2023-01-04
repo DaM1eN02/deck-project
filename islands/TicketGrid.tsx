@@ -71,11 +71,11 @@ function Ticket({ id, name, event, image }: TicketType) {
       <div
         id={id}
         class="hidden z-40 w-full h-full fixed top-0 left-0 flex items-center justify-center"
-        style="background: rgba(0, 0, 0, 0.7);"
+        style="background: rgba(0, 0, 0, 0.8);"
       >
-        <div class="z-50 flex flex-col content-center items-center w-1/2 h-1/2 bg-white">
+        <div class="z-50 flex flex-col content-center items-center h-1/2 bg-white">
           <h1>SCAN TO VERIFY</h1>
-          <img src={dataUrl} class="h-2/3 m-auto" alt="QR-Code"></img>
+          <img src={dataUrl} class="h-2/3 my-auto mx-5" alt="QR-Code"></img>
         </div>
       </div>
     </div>
