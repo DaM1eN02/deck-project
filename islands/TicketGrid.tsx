@@ -64,7 +64,7 @@ function Ticket({ id, name, event, image }: TicketType) {
         document.getElementById(id)?.classList.toggle("hidden");
       }}
     >
-      <div style="background: rgba(0, 0, 0, 0.7);">
+      <div class="text-white" style="background: rgba(0, 0, 0, 0.7);">
         <div>{name}</div>
         <div>{event}</div>
       </div>
@@ -73,9 +73,19 @@ function Ticket({ id, name, event, image }: TicketType) {
         class="hidden z-40 w-full h-full fixed top-0 left-0 flex items-center justify-center"
         style="background: rgba(0, 0, 0, 0.8);"
       >
-        <div class="z-50 flex flex-col content-center items-center h-1/2 bg-white">
-          <h1>SCAN TO VERIFY</h1>
-          <img src={dataUrl} class="h-2/3 my-auto mx-5" alt="QR-Code"></img>
+        <div
+          class="z-50 flex flex-col content-center items-center h-2/3"
+          style={"background: rgba(200, 200, 200, 1); aspect-ratio: 1 / 1"}
+        >
+          <h1 class="text-xs sm:text-md md:text-xl lg:text-3xl xl:text-5xl 2xl-text-7xl text-black">
+            SCAN TO VERIFY
+          </h1>
+          <img
+            src={dataUrl}
+            class="h-2/3 my-auto mx-5"
+            alt="QR-Code"
+          >
+          </img>
         </div>
       </div>
     </div>

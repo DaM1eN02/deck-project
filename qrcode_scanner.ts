@@ -5,14 +5,14 @@ export async function scan() {
 
   const qrScanner = new QrScanner(
     document.getElementById("scanner"),
-    (result: { data: string }) => onResult(qrScanner, result.data),
+    (result: { data: string }) => onResult(result.data),
     {/* your options or returnDetailedScanResult: true if you're not specifying any other options */},
   );
 
   qrScanner.start();
 }
 
-async function onResult(qrScanner: QrScanner, result: string) {
+async function onResult(result: string) {
   console.log(result);
   const res = await fetch(
     `https://ticket4youdhbw.onrender.com/api/ticket/status/${result}`,
@@ -23,15 +23,14 @@ async function onResult(qrScanner: QrScanner, result: string) {
     return;
   }
   if (obj.active == true) {
-    doc.style.background = "#00FF00";
-    doc.style.opacity = "0.5";
+    doc.style.background = "#33cc33";
     setTimeout(() => {
       doc.style.background = "0000000";
-    }, 1000);
+    }, 2000);
   } else {
-    doc.style.background = "#FF0000";
+    doc.style.background = "#cc3333";
     setTimeout(() => {
       doc.style.background = "0000000";
-    }, 1000);
+    }, 2000);
   }
 }
