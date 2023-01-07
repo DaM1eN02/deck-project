@@ -1,6 +1,7 @@
 import { Button } from "../components/Button.tsx";
 import { tw } from "twind";
 import { css } from "twind/css";
+import { events, EventType } from "../events.ts";
 
 const nonePicture = css({
   display: "block",
@@ -30,40 +31,9 @@ const rightPicture = css({
   zIndex: "1",
 });
 
-const slides = [
-  {
-    title: "Ischgl",
-    subtitle: "Austria",
-    description: "Adventure is never far away",
-    image:
-      "https://res.cloudinary.com/j2ski/albums/u44159/20200312/ischgl-im-winter",
-  },
-  {
-    title: "Wagrain",
-    subtitle: "Austria",
-    description: "Let your dreams come true",
-    image:
-      "https://th.bing.com/th/id/R.de95e607fcfe957e32c671ae46ce6d7c?rik=c0kgCFsKaamrcg&pid=ImgRaw&r=0",
-  },
-  {
-    title: "Zermatt",
-    subtitle: "Switzerland",
-    description: "A piece of heaven",
-    image:
-      "https://th.bing.com/th/id/R.69bc4aeb7d73b0888ac9d954a19262e5?rik=cqA0eVZHhp6FMA&riu=http%3a%2f%2fcdn.justluxe.com%2farticles%2fimages%2fnews%2fshutterstock_254090041.jpg&ehk=hdbqYVj3jpk8mYnlbqkLIVt2NDH7VySp4c0cQRtrWeU%3d&risl=&pid=ImgRaw&r=0",
-  },
-  {
-    title: "Oberwallis",
-    subtitle: "Switzerland",
-    description: "A piece of heaven",
-    image:
-      "https://th.bing.com/th/id/OIP.O3VLujsHNvUO0wEzJKrMRwHaE8?pid=ImgDet&rs=1",
-  },
-];
-
 export default function Slider() {
   let currentIndex = 0;
-  let leftIndex = slides.length - 1;
+  let leftIndex = events.length - 1;
   let rightIndex = currentIndex + 1;
 
   return (
@@ -82,9 +52,9 @@ export default function Slider() {
 
           currentIndex = currentIndex > 0
             ? currentIndex - 1
-            : slides.length - 1;
-          leftIndex = leftIndex > 0 ? leftIndex - 1 : slides.length - 1;
-          rightIndex = rightIndex > 0 ? rightIndex - 1 : slides.length - 1;
+            : events.length - 1;
+          leftIndex = leftIndex > 0 ? leftIndex - 1 : events.length - 1;
+          rightIndex = rightIndex > 0 ? rightIndex - 1 : events.length - 1;
 
           document.getElementById(`slide${rightIndex}`)?.classList.remove(
             tw`${centerPicture}`,
@@ -112,7 +82,7 @@ export default function Slider() {
           if (background) {
             background.style.backgroundImage =
               `linear-gradient(rgba(0, 0, 40, 0.5),rgba(0, 0, 40, 0.5)), url(${
-                slides[currentIndex].image
+                events[currentIndex].image
               }`;
             background.style.backdropFilter = "blur(1)";
           }
@@ -122,14 +92,14 @@ export default function Slider() {
       </div>
       <div class="w-10/12 flex content-center justify-around">
         <div class="overflow-auto w-full flex justify-center items-center">
-          {slides.map((slide, index) => {
+          {events.map((slide, index) => {
             return (
               <Card
                 slide={{
                   id: index,
-                  title: slide.title,
-                  subtitle: slide.subtitle,
-                  image: slide.image,
+                  title: slide.name,
+                  subtitle: slide.country,
+                  image: slide.image ?? "",
                   description: slide.description,
                 }}
                 currentIndex={currentIndex}
@@ -151,11 +121,11 @@ export default function Slider() {
             tw`${nonePicture}`,
           );
 
-          currentIndex = currentIndex < slides.length - 1
+          currentIndex = currentIndex < events.length - 1
             ? currentIndex + 1
             : 0;
-          leftIndex = leftIndex < slides.length - 1 ? leftIndex + 1 : 0;
-          rightIndex = rightIndex < slides.length - 1 ? rightIndex + 1 : 0;
+          leftIndex = leftIndex < events.length - 1 ? leftIndex + 1 : 0;
+          rightIndex = rightIndex < events.length - 1 ? rightIndex + 1 : 0;
 
           document.getElementById(`slide${leftIndex}`)?.classList.remove(
             tw`${centerPicture}`,
@@ -183,7 +153,7 @@ export default function Slider() {
           if (background) {
             background.style.backgroundImage =
               `linear-gradient(rgba(0, 0, 40, 0.5),rgba(0, 0, 40, 0.5)), url(${
-                slides[currentIndex].image
+                events[currentIndex].image
               }`;
             background.style.backdropFilter = "blur(1)";
           }
@@ -196,7 +166,7 @@ export default function Slider() {
 }
 
 type SlideProps = {
-  children: [];
+  children?: never[];
   slide: {
     title: string;
     subtitle: string;
