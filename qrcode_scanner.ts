@@ -13,7 +13,6 @@ export async function scan() {
 }
 
 async function onResult(result: string) {
-  console.log(result);
   const res = await fetch(
     `https://ticket4youdhbw.onrender.com/api/ticket/status/${result}`,
   );

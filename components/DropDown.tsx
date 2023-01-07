@@ -23,11 +23,11 @@ export default function DropDown({ id, title, menu }: Props) {
 
           document.addEventListener("click", (e) => {
             if (!e.target) return;
+            //@ts-ignore
+            const targetId: string = e.target.id;
             if (
-              //@ts-ignore
-              e.target.id != "dropdownContent" + title &&
-              //@ts-ignore
-              e.target.id.includes(id) == false
+              targetId != "dropdownContent" + title &&
+              targetId.includes(id) == false
             ) {
               if (
                 document.getElementById("dropdownContent" + title)?.classList

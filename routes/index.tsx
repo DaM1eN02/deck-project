@@ -41,7 +41,7 @@ const bottom = css({
 
 export default function Home() {
   return (
-    <div class="font-mono h-screen">
+    <div class="font-mono h-screen select-none">
       <div
         id="background"
         class="h-2/3 bg-cover relative transition ease-out duration-500 overflow-x-hidden"
@@ -73,8 +73,8 @@ function Event(slide: Slide) {
   return (
     <div class="w-10/12 h-64 m-auto border flex items-center gap-8 odd:flex-row even:flex-row-reverse">
       <iframe
-        class="h-5/6 w-2/12 aspect-square rounded-full bg-center hover:scale-125 hover:rounded transition ease-out duration-500"
-        style={`background-image:url(${slide.image})`}
+        class="h-5/6 aspect-square rounded-full bg-center hover:scale-125 transition ease-out duration-500"
+        style={`background-image:url(${slide.image}); aspect-ratio: 1 / 1`}
       >
       </iframe>
       <div class="flex flex-col items-center">

@@ -5,7 +5,7 @@ import TicketGrid from "../../islands/TicketGrid.tsx";
 
 export default function Profile(props: PageProps) {
   return (
-    <div class="font-mono h-screen overflow-x-hidden">
+    <div class="font-mono h-screen overflow-x-hidden select-none">
       <Header></Header>
       <div class="m-2">
         <div class="flex">
@@ -22,7 +22,7 @@ export default function Profile(props: PageProps) {
         </div>
         <div class="m-10">
           <h1>My Tickets</h1>
-          <TicketGrid></TicketGrid>
+          <TicketGrid userId={1}></TicketGrid>
         </div>
       </div>
       <Footer></Footer>

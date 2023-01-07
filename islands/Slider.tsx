@@ -1,4 +1,3 @@
-import { useRef } from "preact/hooks";
 import { Button } from "../components/Button.tsx";
 import { tw } from "twind";
 import { css } from "twind/css";
@@ -221,9 +220,7 @@ function Card({ slide, currentIndex, leftIndex, rightIndex }: SlideProps) {
           : ""
       } ${slide.id == leftIndex ? leftPicture : ""} ${
         slide.id == currentIndex ? centerPicture : ""
-      } ${slide.id == rightIndex ? rightPicture : ""} ${
-        slide.id == currentIndex ? "hover:ring-4" : ""
-      }`}
+      } ${slide.id == rightIndex ? rightPicture : ""}`}
       style={"background-image:url(" + slide.image + ")"}
     >
       <div class="p-2" style={"background-color: rgba(255, 255, 255, 0.75)"}>

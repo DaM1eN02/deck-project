@@ -4,7 +4,7 @@ import Footer from "../islands/Footer.tsx";
 
 export default function CalendarView() {
   return (
-    <div>
+    <div class="select-none">
       <Header></Header>
       <Calendar></Calendar>
       <Footer></Footer>
