@@ -1,12 +1,14 @@
 import QrScanner from "./node_modules/qr-scanner/qr-scanner.min.js";
 
 export async function scan() {
-  if (!await QrScanner.hasCamera()) return;
+  if (!(await QrScanner.hasCamera())) return;
 
   const qrScanner = new QrScanner(
     document.getElementById("scanner"),
     (result: { data: string }) => onResult(result.data),
-    {/* your options or returnDetailedScanResult: true if you're not specifying any other options */},
+    {
+      /* your options or returnDetailedScanResult: true if you're not specifying any other options */
+    }
   );
 
   qrScanner.start();
@@ -14,7 +16,7 @@ export async function scan() {
 
 async function onResult(result: string) {
   const res = await fetch(
-    `https://ticket4youdhbw.onrender.com/api/ticket/status/${result}`,
+    `https://ticket4youdhbw.onrender.com/api/ticket/status/${result}`
   );
   const obj = await res.json();
   const doc = document.getElementById("bg");

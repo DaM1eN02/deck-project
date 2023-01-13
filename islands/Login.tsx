@@ -1,6 +1,7 @@
 import { tw } from "twind";
 import { css } from "twind/css";
 import { close, open } from "./Header.tsx";
+import * as uuid from "https://deno.land/std@0.168.0/uuid/mod.ts";
 
 const left = css({
   transform: "translateX(0%) scaleX(0.95) scaleY(1.05)",
@@ -93,7 +94,7 @@ export default function Login() {
     <div
       id="loginBackground"
       class={tw`z-30 ${close} fixed top-0 w-screen h-screen flex justify-center content-center items-center`}
-      style={"background: rgba(200, 200, 200, 0.7)"}
+      style={"background: rgba(50, 50, 50, 0.7)"}
       onClick={(e) => {
         //@ts-ignore
         if (e.target.id != "loginBackground") return;
@@ -136,7 +137,7 @@ export default function Login() {
       >
         <div
           class="h-full grid grid-rows-2 lg:grid-rows-1 lg:grid-cols-2 items-center justify-items-center text-center"
-          style={"background-color: #180148"}
+          style={"background: rgba(200,200,200,0.8)"}
         >
           {contents.map((content) => {
             return (
@@ -168,9 +169,10 @@ function LoginForm() {
   return (
     <div
       id="formLogin"
-      class={tw`${up} absolute h-full w-full bg-white flex justify-center items-center`}
+      class={tw`${up} absolute h-full w-full bg-white flex flex-col justify-center items-center text-black`}
     >
-      <Input label="Username"></Input>
+      <label>LOGIN</label>
+      <Input label="E-Mail"></Input>
       <Input label="Password"></Input>
       <button type="submit"></button>
     </div>
@@ -181,14 +183,13 @@ function RegisterForm() {
   return (
     <div
       id="formRegister"
-      class={tw`absolute h-full w-full bg-white`}
+      class={tw`absolute h-full w-full bg-white flex flex-col justify-center items-center text-black`}
     >
-      <form class="h-full flex flex-col content-center justify-center">
-        <input label="Email" type="email"></input>
-        <input label="Password" type="password"></input>
-        <input label="Confirm Password" type="password"></input>
-        <button type="submit"></button>
-      </form>
+      <label>REGISTER</label>
+      <Input label="E-Mail"></Input>
+      <Input label="Password"></Input>
+      <Input label="Confirm Password"></Input>
+      <button type="submit"></button>
     </div>
   );
 }
@@ -202,28 +203,29 @@ type InputProps = {
 };
 
 function Input({ label }: InputProps) {
+  const id = uuid.v1.generate();
+
   return (
-    <div class="relative">
+    <div
+      class="relative mt-12"
+      onfocusin={() => {
+        document.getElementById(id.toString())?.classList.add(
+          tw`${moveUp}`,
+        );
+      }}
+      onfocusout={() => {
+        document.getElementById(id.toString())?.classList.remove(
+          tw`${moveUp}`,
+        );
+      }}
+    >
+      <input class="p-2 bg-red-600 rounded-3xl"></input>
       <span
-        id={`label${label}`}
-        class={tw`absolute p-2 bg-red-400 rounded-3xl text-black transition-all ease-in-out duration-500`}
+        id={id.toString()}
+        class={tw`absolute top-0 left-0 p-2 bg-red-400 rounded-3xl transition-all ease-in-out duration-500`}
       >
         {label}
       </span>
-      <input
-        class="relative p-2 bg-red-600 rounded-3xl"
-        onfocusin={() => {
-          document.getElementById(`label${label}`)?.classList.add(
-            tw`${moveUp}`,
-          );
-        }}
-        onfocusout={() => {
-          document.getElementById(`label${label}`)?.classList.remove(
-            tw`${moveUp}`,
-          );
-        }}
-      >
-      </input>
     </div>
   );
 }
