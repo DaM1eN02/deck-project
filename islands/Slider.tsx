@@ -183,7 +183,7 @@ function Card({ slide, currentIndex, leftIndex, rightIndex }: SlideProps) {
   return (
     <div
       id={"slide" + slide.id}
-      class={tw`w-3/5 sm:w-2/5 lg:w-1/5 h-2/3 p-2 flex bg-center absolute transition-all ease-out duration-700 ${
+      class={tw`w-3/5 sm:w-2/5 lg:w-1/5 h-2/3 p-2 flex bg-center absolute transition-all ease-in-out duration-700 ${
         (slide.id != leftIndex && slide.id != currentIndex &&
             slide.id != rightIndex)
           ? nonePicture

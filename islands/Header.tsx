@@ -4,10 +4,18 @@ import CalendarIcon from "../components/CalendarIcon.tsx";
 import ProfileIcon from "../components/ProfileIcon.tsx";
 import { tw } from "twind";
 import { css } from "twind/css";
-import { PageProps } from "$fresh/server.ts";
+import Login from "./Login.tsx";
 
 const height = css({
   height: "calc(66.6% * 0.166)",
+});
+
+export const open = css({
+  transform: "scale(1)",
+});
+
+export const close = css({
+  transform: "scale(0)",
 });
 
 type Props = {
@@ -19,7 +27,7 @@ export default function Header({ fixed }: Props) {
     <div
       class={tw`${
         fixed ? "fixed" : ""
-      } ${height} z-10 flex flex-row justify-around items-center w-screen text-white overflow-x-hidden`}
+      } ${height} z-20 flex justify-around items-center w-screen text-white overflow-x-hidden`}
       style={"background-color: rgba(0, 0, 0, 0.5)"}
     >
       <a href="/">
@@ -53,9 +61,31 @@ export default function Header({ fixed }: Props) {
       <a href="/calendar">
         <CalendarIcon></CalendarIcon>
       </a>
+      <button
+        type="button"
+        id="loginButton"
+        onClick={() => {
+          document.getElementById("loginBackground")?.classList.remove(
+            tw`${close}`,
+          );
+          document.getElementById("loginBackground")?.classList.add(
+            tw`${open}`,
+          );
+
+          document.getElementById("login")?.classList.remove(
+            tw`${close}`,
+          );
+          document.getElementById("login")?.classList.add(
+            tw`${open}`,
+          );
+        }}
+      >
+        Login / Register
+      </button>
       <a href="/profile/User">
         <ProfileIcon name="User"></ProfileIcon>
       </a>
+      <Login></Login>
     </div>
   );
 }

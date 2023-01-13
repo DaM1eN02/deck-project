@@ -12,7 +12,7 @@ export default function Profile(props: PageProps) {
           <div>
             <div
               class="h-64 w-64 rounded-full bg-center bg-cover"
-              style={"background-image: url(https://www.perfocal.com/blog/content/images/2020/07/Perfocal_Male_Dating_Profile_Portrait_Asian.jpg)"}
+              style={"background-image: url(https://www.funnytummy.com/wp-content/uploads/2021/10/funny-profile-pictures-1-772x1024.jpg)"}
             >
             </div>
           </div>

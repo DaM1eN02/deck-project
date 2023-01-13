@@ -1,39 +1,9 @@
 import { tw } from "twind";
-import { css } from "twind/css";
+import { css, keyframes } from "twind/css";
 import Footer from "../islands/Footer.tsx";
 import Header from "../islands/Header.tsx";
 import Slider from "../islands/Slider.tsx";
-
-const slides: Array<Slide> = [
-  {
-    title: "Ischgl",
-    subtitle: "Austria",
-    description: "Adventure is never far away",
-    image:
-      "https://res.cloudinary.com/j2ski/albums/u44159/20200312/ischgl-im-winter",
-  },
-  {
-    title: "Wagrain",
-    subtitle: "Austria",
-    description: "Let your dreams come true",
-    image:
-      "https://th.bing.com/th/id/R.de95e607fcfe957e32c671ae46ce6d7c?rik=c0kgCFsKaamrcg&pid=ImgRaw&r=0",
-  },
-  {
-    title: "Zermatt",
-    subtitle: "Switzerland",
-    description: "A piece of heaven",
-    image:
-      "https://th.bing.com/th/id/R.69bc4aeb7d73b0888ac9d954a19262e5?rik=cqA0eVZHhp6FMA&riu=http%3a%2f%2fcdn.justluxe.com%2farticles%2fimages%2fnews%2fshutterstock_254090041.jpg&ehk=hdbqYVj3jpk8mYnlbqkLIVt2NDH7VySp4c0cQRtrWeU%3d&risl=&pid=ImgRaw&r=0",
-  },
-  {
-    title: "Oberwallis",
-    subtitle: "Switzerland",
-    description: "A piece of heaven",
-    image:
-      "https://th.bing.com/th/id/OIP.O3VLujsHNvUO0wEzJKrMRwHaE8?pid=ImgDet&rs=1",
-  },
-];
+import { events, EventType } from "../events.ts";
 
 const bottom = css({
   bottom: "-16.6%",
@@ -53,8 +23,8 @@ export default function Home() {
         </div>
       </div>
       <div class="m-8">
-        {slides.map((slide) => {
-          return <Event {...slide}></Event>;
+        {events.map((event) => {
+          return <Event {...event}></Event>;
         })}
       </div>
       <Footer></Footer>
@@ -62,14 +32,7 @@ export default function Home() {
   );
 }
 
-type Slide = {
-  title: string;
-  subtitle: string;
-  description: string;
-  image: string;
-};
-
-function Event(slide: Slide) {
+function Event(slide: EventType) {
   return (
     <div class="w-10/12 h-64 m-auto border flex items-center gap-8 odd:flex-row even:flex-row-reverse">
       <iframe
@@ -78,8 +41,8 @@ function Event(slide: Slide) {
       >
       </iframe>
       <div class="flex flex-col items-center">
-        <div class="pointer-events-none">{slide.title}</div>
-        <div>{slide.subtitle}</div>
+        <div class="pointer-events-none">{slide.name}</div>
+        <div>{slide.country}</div>
         <div>{slide.description}</div>
       </div>
     </div>

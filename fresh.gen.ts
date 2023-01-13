@@ -12,9 +12,10 @@ import * as $5 from "./routes/search/[string].tsx";
 import * as $$0 from "./islands/Calendar.tsx";
 import * as $$1 from "./islands/Footer.tsx";
 import * as $$2 from "./islands/Header.tsx";
-import * as $$3 from "./islands/Scanner.tsx";
-import * as $$4 from "./islands/Slider.tsx";
-import * as $$5 from "./islands/TicketGrid.tsx";
+import * as $$3 from "./islands/Login.tsx";
+import * as $$4 from "./islands/Scanner.tsx";
+import * as $$5 from "./islands/Slider.tsx";
+import * as $$6 from "./islands/TicketGrid.tsx";
 
 const manifest = {
   routes: {
@@ -29,9 +30,10 @@ const manifest = {
     "./islands/Calendar.tsx": $$0,
     "./islands/Footer.tsx": $$1,
     "./islands/Header.tsx": $$2,
-    "./islands/Scanner.tsx": $$3,
-    "./islands/Slider.tsx": $$4,
-    "./islands/TicketGrid.tsx": $$5,
+    "./islands/Login.tsx": $$3,
+    "./islands/Scanner.tsx": $$4,
+    "./islands/Slider.tsx": $$5,
+    "./islands/TicketGrid.tsx": $$6,
   },
   baseUrl: import.meta.url,
   config,
