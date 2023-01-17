@@ -14,17 +14,13 @@ type TicketType = {
   lastRedeemed: string | null;
 };
 
-type Props = {
-  userId: number;
-};
-
-export default function TicketGrid(
-  { userId }: Props,
-) {
+export default function TicketGrid() {
   const [results, setResults] = useState([]);
 
   fetch(
-    `https://ticket4youdhbw.onrender.com/api/ticket/allOfUser/${userId}`,
+    `https://ticket4youdhbw.onrender.com/api/ticket/allOfUser/${
+      localStorage.getItem("userID")
+    }`,
   ).then(async (res) => {
     const list = (await res.json()).ticketlist;
     setResults(list);

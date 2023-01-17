@@ -1,5 +1,5 @@
 import { tw } from "twind";
-import { css, keyframes } from "twind/css";
+import { css } from "twind/css";
 import Footer from "../islands/Footer.tsx";
 import Header from "../islands/Header.tsx";
 import Slider from "../islands/Slider.tsx";
@@ -8,6 +8,14 @@ import { events, EventType } from "../events.ts";
 const bottom = css({
   bottom: "-16.6%",
 });
+
+export type User = {
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  bday: string;
+};
 
 export default function Home() {
   return (

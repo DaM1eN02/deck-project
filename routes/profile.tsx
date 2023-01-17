@@ -1,7 +1,7 @@
 import { PageProps } from "$fresh/server.ts";
-import Header from "../../islands/Header.tsx";
-import Footer from "../../islands/Footer.tsx";
-import TicketGrid from "../../islands/TicketGrid.tsx";
+import Header from "../islands/Header.tsx";
+import Footer from "../islands/Footer.tsx";
+import TicketGrid from "../islands/TicketGrid.tsx";
 
 export default function Profile(props: PageProps) {
   return (
@@ -17,12 +17,12 @@ export default function Profile(props: PageProps) {
             </div>
           </div>
           <div>
-            <div>{props.params.eventID}</div>
+            <div>{props.params.userID}</div>
           </div>
         </div>
         <div class="m-10">
           <h1>My Tickets</h1>
-          <TicketGrid userId={1}></TicketGrid>
+          <TicketGrid></TicketGrid>
         </div>
       </div>
       <Footer></Footer>

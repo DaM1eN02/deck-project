@@ -1,10 +1,11 @@
 import DropDown from "../components/DropDown.tsx";
 import SearchBar from "../components/SearchBar.tsx";
 import CalendarIcon from "../components/CalendarIcon.tsx";
-import ProfileIcon from "../components/ProfileIcon.tsx";
 import { tw } from "twind";
 import { css } from "twind/css";
 import Login from "./Login.tsx";
+import { openLogin } from "./Login.tsx";
+import ProfileIcon from "../components/ProfileIcon.tsx";
 
 const height = css({
   height: "calc(66.6% * 0.166)",
@@ -25,6 +26,7 @@ type Props = {
 export default function Header({ fixed }: Props) {
   return (
     <div
+      id="header"
       class={tw`${
         fixed ? "fixed" : ""
       } ${height} z-20 flex justify-around items-center w-screen text-white overflow-x-hidden`}
@@ -51,7 +53,7 @@ export default function Header({ fixed }: Props) {
         title="Locations"
         menu={[
           { title: "Deutschland", href: "/search/germany" },
-          { title: "Österreich", href: "search//austria" },
+          { title: "Österreich", href: "/search/austria" },
           { title: "Schweiz", href: "/search/switzerland" },
           { title: "Frankreich", href: "/search/france" },
         ]}
@@ -61,30 +63,23 @@ export default function Header({ fixed }: Props) {
       <a href="/calendar">
         <CalendarIcon></CalendarIcon>
       </a>
-      <button
-        type="button"
-        id="loginButton"
-        onClick={() => {
-          document.getElementById("loginBackground")?.classList.remove(
-            tw`${close}`,
-          );
-          document.getElementById("loginBackground")?.classList.add(
-            tw`${open}`,
-          );
-
-          document.getElementById("login")?.classList.remove(
-            tw`${close}`,
-          );
-          document.getElementById("login")?.classList.add(
-            tw`${open}`,
-          );
-        }}
-      >
-        Login / Register
-      </button>
-      <a href="/profile/User">
-        <ProfileIcon name="User"></ProfileIcon>
-      </a>
+      {localStorage.getItem("userID")
+        ? (
+          <a id="profileButton" href={`/profile`}>
+            <ProfileIcon></ProfileIcon>
+          </a>
+        )
+        : (
+          <button
+            type="button"
+            id="loginButton"
+            onClick={() => {
+              openLogin();
+            }}
+          >
+            Login / Register
+          </button>
+        )}
       <Login></Login>
     </div>
   );

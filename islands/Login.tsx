@@ -2,21 +2,24 @@ import { tw } from "twind";
 import { css } from "twind/css";
 import { close, open } from "./Header.tsx";
 import * as uuid from "https://deno.land/std@0.168.0/uuid/mod.ts";
+import Input from "../components/Input.tsx";
+import { http } from "../fetch.ts";
+import { User } from "../routes/index.tsx";
 
 const left = css({
-  transform: "translateX(0%) scaleX(0.95) scaleY(1.05)",
+  transform: "translateX(0%) translateY(0%) scaleX(0.95) scaleY(1.05)",
 });
 
 const right = css({
-  transform: "translateX(100%) scaleX(0.95) scaleY(1.05)",
+  transform: "translateX(100%) translateY(0%) scaleX(0.95) scaleY(1.05)",
 });
 
 const top = css({
-  transform: "translateY(0%) scaleY(0.95) scaleX(1.05)",
+  transform: "translateX(0%) translateY(0%) scaleX(1.05) scaleY(0.95)",
 });
 
 const down = css({
-  transform: "translateY(100%) scaleY(0.95) scaleX(1.05)",
+  transform: "translateX(0%) translateY(100%) scaleX(1.05) scaleX(0.95)",
 });
 
 const up = css({
@@ -32,8 +35,7 @@ export default function Login() {
       if (!form) return;
 
       if (
-        form.classList.contains(tw`lg:${right}`) &&
-        form.classList.contains(tw`${down}`)
+        form.classList.contains(tw`lg:${right}`)
       ) {
         form.classList.remove(
           tw`lg:${right}`,
@@ -64,8 +66,7 @@ export default function Login() {
       if (!form) return;
 
       if (
-        form.classList.contains(tw`lg:${left}`) &&
-        form.classList.contains(tw`${top}`)
+        form.classList.contains(tw`lg:${left}`)
       ) {
         form.classList.remove(
           tw`lg:${left}`,
@@ -96,44 +97,12 @@ export default function Login() {
       class={tw`z-30 ${close} fixed top-0 w-screen h-screen flex justify-center content-center items-center`}
       style={"background: rgba(50, 50, 50, 0.7)"}
       onClick={(e) => {
-        //@ts-ignore
-        if (e.target.id != "loginBackground") return;
-        document.getElementById("loginBackground")?.classList.remove(
-          tw`${open}`,
-        );
-        document.getElementById("loginBackground")?.classList.add(
-          tw`${close}`,
-        );
-
-        document.getElementById("login")?.classList.remove(
-          tw`${open}`,
-        );
-        document.getElementById("login")?.classList.add(
-          tw`${close}`,
-        );
-
-        document.getElementById("form")?.classList.remove(
-          tw`${right}`,
-          tw`${left}`,
-        );
-        document.getElementById("form")?.classList.add(
-          tw`${left}`,
-        );
-
-        document.getElementById("formRegister")?.classList.remove(
-          tw`${up}`,
-        );
-        document.getElementById("formLogin")?.classList.remove(
-          tw`${up}`,
-        );
-        document.getElementById("formRegister")?.classList.add(
-          tw`${up}`,
-        );
+        closeLogin(e);
       }}
     >
       <div
         id="login"
-        class={tw`z-40 ${close} relative h-2/3 lg:h-1/2 w-1/2 transition-all ease-in-out duration-1000`}
+        class={tw`z-40 ${close} relative h-2/3 w-2/3 transition-all ease-in-out duration-1000`}
       >
         <div
           class="h-full grid grid-rows-2 lg:grid-rows-1 lg:grid-cols-2 items-center justify-items-center text-center"
@@ -155,7 +124,7 @@ export default function Login() {
         </div>
         <div
           id="form"
-          class={tw`absolute top-0 h-1/2 lg:h-full w-full lg:w-1/2 transition-all ease-in-out duration-500 ${top} lg:${left}`}
+          class={tw`absolute top-0 h-1/2 lg:h-full w-full lg:w-1/2 transition-all ease-in-out duration-500 lg:${left} ${top}`}
         >
           <RegisterForm></RegisterForm>
           <LoginForm></LoginForm>
@@ -166,66 +135,187 @@ export default function Login() {
 }
 
 function LoginForm() {
+  const emailId = uuid.v1.generate().toString();
+  const passwordId = uuid.v1.generate().toString();
+
   return (
     <div
       id="formLogin"
       class={tw`${up} absolute h-full w-full bg-white flex flex-col justify-center items-center text-black`}
     >
       <label>LOGIN</label>
-      <Input label="E-Mail"></Input>
-      <Input label="Password"></Input>
-      <button type="submit"></button>
+      <Input id={emailId} label="E-Mail"></Input>
+      <Input id={passwordId} label="Password"></Input>
+      <button
+        onClick={async () => {
+          //@ts-ignore
+          const email = document.getElementById(emailId + "input")?.value;
+          //@ts-ignore
+          const password = document.getElementById(passwordId + "input")?.value;
+
+          const json = {
+            email: email,
+            password: password,
+          };
+
+          const res = http(
+            `https://ticket4youdhbw.onrender.com/api/user/login`,
+            "PATCH",
+            json,
+          ).then((response) => {
+            return response;
+          });
+
+          if ((await res).Error) {
+            return;
+            // TODO Display error message
+          }
+
+          closeLogin();
+
+          localStorage.setItem("userID", (await res).user_id);
+          localStorage.setItem("firstName", (await res).first_name);
+          localStorage.setItem("lastName", (await res).last_name);
+          localStorage.setItem("email", (await res).email);
+          localStorage.setItem("bday", (await res).birthdate);
+          window.location.href = "/";
+        }}
+        class="border"
+      >
+        Log in
+      </button>
     </div>
   );
 }
 
 function RegisterForm() {
+  const emailId = uuid.v1.generate().toString();
+  const passwordId = uuid.v1.generate().toString();
+  const confirmPasswordId = uuid.v1.generate().toString();
+  const firstNameId = uuid.v1.generate().toString();
+  const lastNameId = uuid.v1.generate().toString();
+  const bdId = uuid.v1.generate().toString();
+
   return (
     <div
       id="formRegister"
       class={tw`absolute h-full w-full bg-white flex flex-col justify-center items-center text-black`}
     >
       <label>REGISTER</label>
-      <Input label="E-Mail"></Input>
-      <Input label="Password"></Input>
-      <Input label="Confirm Password"></Input>
-      <button type="submit"></button>
+      <Input id={firstNameId} label="First Name"></Input>
+      <Input id={lastNameId} label="Last Name"></Input>
+      <Input id={emailId} label="E-Mail"></Input>
+      <Input id={bdId} label="Birthday" type="date"></Input>
+      <Input id={passwordId} label="Password"></Input>
+      <Input id={confirmPasswordId} label="Confirm Password"></Input>
+      <button
+        onClick={async () => {
+          const firstName = document.getElementById(firstNameId + "input")
+            //@ts-ignore
+            ?.value;
+          //@ts-ignore
+          const lastName = document.getElementById(lastNameId + "input")?.value;
+          //@ts-ignore
+          const email = document.getElementById(emailId + "input")?.value;
+          //@ts-ignore
+          const bday = document.getElementById(bdId + "input")?.value;
+          const password1 = document.getElementById(passwordId + "input")
+            //@ts-ignore
+            ?.value;
+          const password2 = document.getElementById(confirmPasswordId + "input")
+            //@ts-ignore
+            ?.value;
+
+          if (password1 != password2) console.log("Password mismatch");
+
+          const json = {
+            email: email,
+            password: password1,
+            first_name: firstName,
+            last_name: lastName,
+            birthdate: bday,
+          };
+
+          const res = http(
+            `https://ticket4youdhbw.onrender.com/api/user/register`,
+            "POST",
+            json,
+          ).then((response) => {
+            return response;
+          });
+
+          closeLogin();
+
+          localStorage.setItem("userID", (await res).user_id);
+          localStorage.setItem("firstName", (await res).first_name);
+          localStorage.setItem("lastName", (await res).last_name);
+          localStorage.setItem("email", (await res).email);
+          localStorage.setItem("bday", (await res).birthdate);
+          window.location.href = "/";
+        }}
+        class="border"
+      >
+        Register
+      </button>
     </div>
   );
 }
 
-const moveUp = css({
-  transform: "translateY(-110%)",
-});
+export function openLogin() {
+  document.getElementById("loginBackground")?.classList.remove(
+    tw`${close}`,
+  );
+  document.getElementById("loginBackground")?.classList.add(
+    tw`${open}`,
+  );
 
-type InputProps = {
-  label: string;
-};
+  document.getElementById("login")?.classList.remove(
+    tw`${close}`,
+  );
+  document.getElementById("login")?.classList.add(
+    tw`${open}`,
+  );
+}
 
-function Input({ label }: InputProps) {
-  const id = uuid.v1.generate();
+function closeLogin(e?: any) {
+  if (e && e.target.id != "loginBackground") return;
+  document.getElementById("loginBackground")?.classList.remove(
+    tw`${open}`,
+  );
+  document.getElementById("loginBackground")?.classList.add(
+    tw`${close}`,
+  );
 
-  return (
-    <div
-      class="relative mt-12"
-      onfocusin={() => {
-        document.getElementById(id.toString())?.classList.add(
-          tw`${moveUp}`,
-        );
-      }}
-      onfocusout={() => {
-        document.getElementById(id.toString())?.classList.remove(
-          tw`${moveUp}`,
-        );
-      }}
-    >
-      <input class="p-2 bg-red-600 rounded-3xl"></input>
-      <span
-        id={id.toString()}
-        class={tw`absolute top-0 left-0 p-2 bg-red-400 rounded-3xl transition-all ease-in-out duration-500`}
-      >
-        {label}
-      </span>
-    </div>
+  document.getElementById("login")?.classList.remove(
+    tw`${open}`,
+  );
+  document.getElementById("login")?.classList.add(
+    tw`${close}`,
+  );
+
+  document.getElementById("form")?.classList.remove(
+    tw`lg:${right}`,
+    tw`lg:${left}`,
+  );
+  document.getElementById("form")?.classList.add(
+    tw`lg:${left}`,
+  );
+
+  document.getElementById("form")?.classList.remove(
+    tw`${top}`,
+    tw`${down}`,
+  );
+  document.getElementById("form")?.classList.add(
+    tw`${top}`,
+  );
+
+  document.getElementById("formRegister")?.classList.remove(
+    tw`${up}`,
+  );
+  document.getElementById("formLogin")?.classList.remove(
+    tw`${up}`,
+  );
+  document.getElementById("formLogin")?.classList.add(
+    tw`${up}`,
   );
 }
