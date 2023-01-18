@@ -2,8 +2,11 @@ import { PageProps } from "$fresh/server.ts";
 import Header from "../islands/Header.tsx";
 import Footer from "../islands/Footer.tsx";
 import TicketGrid from "../islands/TicketGrid.tsx";
+import { useEffect, useState } from "preact/hooks";
+import { readCookie } from "../cookie.ts";
+import UserData from "../islands/UserData.tsx";
 
-export default function Profile(props: PageProps) {
+export default function Profile() {
   return (
     <div class="font-mono h-screen overflow-x-hidden select-none">
       <Header></Header>
@@ -16,9 +19,7 @@ export default function Profile(props: PageProps) {
             >
             </div>
           </div>
-          <div>
-            <div>{props.params.userID}</div>
-          </div>
+          <UserData></UserData>
         </div>
         <div class="m-10">
           <h1>My Tickets</h1>

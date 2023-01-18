@@ -5,6 +5,7 @@ import * as uuid from "https://deno.land/std@0.168.0/uuid/mod.ts";
 import Input from "../components/Input.tsx";
 import { http } from "../fetch.ts";
 import { User } from "../routes/index.tsx";
+import { createCookie } from "../cookie.ts";
 
 const left = css({
   transform: "translateX(0%) translateY(0%) scaleX(0.95) scaleY(1.05)",
@@ -173,11 +174,11 @@ function LoginForm() {
 
           closeLogin();
 
-          localStorage.setItem("userID", (await res).user_id);
-          localStorage.setItem("firstName", (await res).first_name);
-          localStorage.setItem("lastName", (await res).last_name);
-          localStorage.setItem("email", (await res).email);
-          localStorage.setItem("bday", (await res).birthdate);
+          createCookie("userID", (await res).user_id, 30);
+          createCookie("firstName", (await res).first_name, 30);
+          createCookie("lastName", (await res).last_name, 30);
+          createCookie("email", (await res).email, 30);
+          createCookie("bday", (await res).birthdate, 30);
           window.location.href = "/";
         }}
         class="border"
@@ -246,11 +247,11 @@ function RegisterForm() {
 
           closeLogin();
 
-          localStorage.setItem("userID", (await res).user_id);
-          localStorage.setItem("firstName", (await res).first_name);
-          localStorage.setItem("lastName", (await res).last_name);
-          localStorage.setItem("email", (await res).email);
-          localStorage.setItem("bday", (await res).birthdate);
+          createCookie("userID", (await res).user_id, 30);
+          createCookie("firstName", (await res).first_name, 30);
+          createCookie("lastName", (await res).last_name, 30);
+          createCookie("email", (await res).email, 30);
+          createCookie("bday", (await res).birthdate, 30);
           window.location.href = "/";
         }}
         class="border"

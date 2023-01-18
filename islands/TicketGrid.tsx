@@ -1,6 +1,8 @@
 import { createQrCodeAsDataUrl } from "../qrcode.ts";
-import { useState } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 import { events, EventType } from "../events.ts";
+import { readCookie } from "../cookie.ts";
+import { http } from "../fetch.ts";
 
 type TicketType = {
   ticketId: number;
@@ -16,14 +18,18 @@ type TicketType = {
 
 export default function TicketGrid() {
   const [results, setResults] = useState([]);
+  const [userID, setUserID] = useState("0");
 
-  fetch(
-    `https://ticket4youdhbw.onrender.com/api/ticket/allOfUser/${
-      localStorage.getItem("userID")
-    }`,
-  ).then(async (res) => {
-    const list = (await res.json()).ticketlist;
-    setResults(list);
+  const res = http(
+    `https://ticket4youdhbw.onrender.com/api/ticket/allOfUser/${userID}`,
+    "GET",
+  );
+
+  useEffect(() => {
+    (async () => {
+      setResults((await res).ticketlist ?? []);
+    });
+    setUserID(readCookie("userID") ?? "0");
   });
 
   return (

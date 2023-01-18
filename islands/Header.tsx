@@ -6,6 +6,8 @@ import { css } from "twind/css";
 import Login from "./Login.tsx";
 import { openLogin } from "./Login.tsx";
 import ProfileIcon from "../components/ProfileIcon.tsx";
+import { readCookie } from "../cookie.ts";
+import { useEffect, useState } from "preact/hooks";
 
 const height = css({
   height: "calc(66.6% * 0.166)",
@@ -24,6 +26,28 @@ type Props = {
 };
 
 export default function Header({ fixed }: Props) {
+  const [loginComponent, setLoginComponent] = useState(<></>);
+
+  useEffect(() => {
+    readCookie("userID")
+      ? setLoginComponent(
+        <a id="profileButton" href={`/profile`}>
+          <ProfileIcon></ProfileIcon>
+        </a>,
+      )
+      : setLoginComponent(
+        <button
+          type="button"
+          id="loginButton"
+          onClick={() => {
+            openLogin();
+          }}
+        >
+          Login / Register
+        </button>,
+      );
+  });
+
   return (
     <div
       id="header"
@@ -63,23 +87,7 @@ export default function Header({ fixed }: Props) {
       <a href="/calendar">
         <CalendarIcon></CalendarIcon>
       </a>
-      {localStorage.getItem("userID")
-        ? (
-          <a id="profileButton" href={`/profile`}>
-            <ProfileIcon></ProfileIcon>
-          </a>
-        )
-        : (
-          <button
-            type="button"
-            id="loginButton"
-            onClick={() => {
-              openLogin();
-            }}
-          >
-            Login / Register
-          </button>
-        )}
+      {loginComponent}
       <Login></Login>
     </div>
   );
