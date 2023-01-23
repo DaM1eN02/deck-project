@@ -1,5 +1,5 @@
 import { createQrCodeAsDataUrl } from "../qrcode.ts";
-import { useEffect, useState } from "preact/hooks";
+import { StateUpdater, useEffect, useState } from "preact/hooks";
 import { events, EventType } from "../events.ts";
 import { readCookie } from "../cookie.ts";
 import { http } from "../fetch.ts";
@@ -16,20 +16,24 @@ type TicketType = {
   lastRedeemed: string | null;
 };
 
-export default function TicketGrid() {
-  const [results, setResults] = useState([]);
-  const [userID, setUserID] = useState("0");
-
+async function refreshResults(
+  setResults: StateUpdater<never[]>,
+  userID: string,
+) {
   const res = http(
     `https://ticket4youdhbw.onrender.com/api/ticket/allOfUser/${userID}`,
     "GET",
   );
+  setResults((await res).ticketlist ?? []);
+}
+
+export default function TicketGrid() {
+  const [results, setResults] = useState([]);
+  const [userID, setUserID] = useState("0");
 
   useEffect(() => {
-    (async () => {
-      setResults((await res).ticketlist ?? []);
-    });
     setUserID(readCookie("userID") ?? "0");
+    refreshResults(setResults, userID);
   });
 
   return (

@@ -1,7 +1,7 @@
 export async function http(
   url: string,
   method?: "GET" | "POST" | "PATCH",
-  data: any = {}
+  data: any = {},
 ) {
   let res = new Response();
   if (method == "GET") {
@@ -10,6 +10,7 @@ export async function http(
       mode: "cors",
       cache: "no-cache",
     });
+    return res.json();
   } else if (method == "POST") {
     res = await fetch(url, {
       method: method,
@@ -20,6 +21,7 @@ export async function http(
       },
       body: JSON.stringify(data),
     });
+    return res.json();
   } else if (method == "PATCH") {
     res = await fetch(url, {
       method: method,
@@ -30,6 +32,6 @@ export async function http(
       },
       body: JSON.stringify(data),
     });
+    return res.json();
   }
-  return res.json();
 }

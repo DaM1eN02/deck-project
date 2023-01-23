@@ -5,18 +5,18 @@ export async function scan() {
 
   const qrScanner = new QrScanner(
     document.getElementById("scanner"),
-    (result: { data: string }) => onResult(result.data),
+    (result: { data: string }) => onResult(result.data, qrScanner),
     {
       /* your options or returnDetailedScanResult: true if you're not specifying any other options */
-    }
+    },
   );
 
   qrScanner.start();
 }
 
-async function onResult(result: string) {
+async function onResult(result: string, qrScanner: QrScanner) {
   const res = await fetch(
-    `https://ticket4youdhbw.onrender.com/api/ticket/status/${result}`
+    `https://ticket4youdhbw.onrender.com/api/ticket/status/${result}`,
   );
   const obj = await res.json();
   const doc = document.getElementById("bg");
@@ -34,4 +34,6 @@ async function onResult(result: string) {
       doc.style.background = "0000000";
     }, 2000);
   }
+
+  qrScanner.stop();
 }
