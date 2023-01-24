@@ -1,9 +1,6 @@
-import { PageProps } from "$fresh/server.ts";
 import Header from "../islands/Header.tsx";
 import Footer from "../islands/Footer.tsx";
 import TicketGrid from "../islands/TicketGrid.tsx";
-import { useEffect, useState } from "preact/hooks";
-import { readCookie } from "../cookie.ts";
 import UserData from "../islands/UserData.tsx";
 
 export default function Profile() {
@@ -15,7 +12,7 @@ export default function Profile() {
           <div>
             <div
               class="h-64 w-64 rounded-full bg-center bg-cover"
-              style={"background-image: url(https://www.funnytummy.com/wp-content/uploads/2021/10/funny-profile-pictures-1-772x1024.jpg)"}
+              style={`background-image: url("/franke.jpeg")`}
             >
             </div>
           </div>

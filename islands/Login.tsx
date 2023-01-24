@@ -15,80 +15,68 @@ const right = css({
   transform: "translateX(100%) translateY(0%) scaleX(0.95) scaleY(1.05)",
 });
 
-const top = css({
-  transform: "translateX(0%) translateY(0%) scaleX(1.05) scaleY(0.95)",
-});
-
-const down = css({
-  transform: "translateX(0%) translateY(100%) scaleX(1.05) scaleX(0.95)",
-});
-
 const up = css({
   zIndex: "50",
 });
+
+function switchRegisterToLogin() {
+  const form = document.getElementById("form");
+  if (!form) return;
+
+  if (
+    form.classList.contains(tw`lg:${right}`)
+  ) {
+    form.classList.remove(
+      tw`lg:${right}`,
+    );
+    form.classList.add(
+      tw`lg:${left}`,
+    );
+  }
+
+  document.getElementById("formRegister")?.classList.toggle(
+    tw`${up}`,
+  );
+  document.getElementById("formLogin")?.classList.toggle(
+    tw`${up}`,
+  );
+}
+
+function switchLoginToRegister() {
+  const form = document.getElementById("form");
+  if (!form) return;
+
+  if (
+    form.classList.contains(tw`lg:${left}`)
+  ) {
+    form.classList.remove(
+      tw`lg:${left}`,
+    );
+    form.classList.add(
+      tw`lg:${right}`,
+    );
+  }
+
+  document.getElementById("formRegister")?.classList.toggle(
+    tw`${up}`,
+  );
+  document.getElementById("formLogin")?.classList.toggle(
+    tw`${up}`,
+  );
+}
 
 export default function Login() {
   const contents = [{
     text: "Have an account?",
     buttonText: "Log In",
     onClick: () => {
-      const form = document.getElementById("form");
-      if (!form) return;
-
-      if (
-        form.classList.contains(tw`lg:${right}`)
-      ) {
-        form.classList.remove(
-          tw`lg:${right}`,
-        );
-        form.classList.add(
-          tw`lg:${left}`,
-        );
-        form.classList.remove(
-          tw`${down}`,
-        );
-        form.classList.add(
-          tw`${top}`,
-        );
-      }
-
-      document.getElementById("formRegister")?.classList.toggle(
-        tw`${up}`,
-      );
-      document.getElementById("formLogin")?.classList.toggle(
-        tw`${up}`,
-      );
+      switchRegisterToLogin();
     },
   }, {
     text: "Don't hava an account?",
     buttonText: "Register",
     onClick: () => {
-      const form = document.getElementById("form");
-      if (!form) return;
-
-      if (
-        form.classList.contains(tw`lg:${left}`)
-      ) {
-        form.classList.remove(
-          tw`lg:${left}`,
-        );
-        form.classList.add(
-          tw`lg:${right}`,
-        );
-        form.classList.remove(
-          tw`${top}`,
-        );
-        form.classList.add(
-          tw`${down}`,
-        );
-      }
-
-      document.getElementById("formRegister")?.classList.toggle(
-        tw`${up}`,
-      );
-      document.getElementById("formLogin")?.classList.toggle(
-        tw`${up}`,
-      );
+      switchLoginToRegister();
     },
   }];
 
@@ -103,7 +91,7 @@ export default function Login() {
     >
       <div
         id="login"
-        class={tw`z-40 ${close} relative h-2/3 w-2/3 transition-all ease-in-out duration-1000`}
+        class={tw`z-40 ${close} relative h-3/4 w-3/4 transition-all ease-in-out duration-1000`}
       >
         <div
           class="h-full grid grid-rows-2 lg:grid-rows-1 lg:grid-cols-2 items-center justify-items-center text-center"
@@ -125,7 +113,7 @@ export default function Login() {
         </div>
         <div
           id="form"
-          class={tw`absolute top-0 h-1/2 lg:h-full w-full lg:w-1/2 transition-all ease-in-out duration-500 lg:${left} ${top}`}
+          class={tw`absolute top-0 h-full w-full lg:w-1/2 transition-all ease-in-out duration-500 lg:${left}`}
         >
           <RegisterForm></RegisterForm>
           <LoginForm></LoginForm>
@@ -185,6 +173,14 @@ function LoginForm() {
       >
         Log in
       </button>
+      <button
+        class="mt-5 lg:hidden"
+        onClick={() => {
+          switchLoginToRegister();
+        }}
+      >
+        Don't have an account?
+      </button>
     </div>
   );
 }
@@ -200,7 +196,7 @@ function RegisterForm() {
   return (
     <div
       id="formRegister"
-      class={tw`absolute h-full w-full bg-white flex flex-col justify-center items-center text-black`}
+      class={tw`absolute h-full w-full bg-white flex flex-col justify-center items-center text-black overflow-y-hidden`}
     >
       <label>REGISTER</label>
       <Input id={firstNameId} label="First Name"></Input>
@@ -258,6 +254,14 @@ function RegisterForm() {
       >
         Register
       </button>
+      <button
+        class="mt-5 lg:hidden"
+        onClick={() => {
+          switchRegisterToLogin();
+        }}
+      >
+        Already have an account?
+      </button>
     </div>
   );
 }
@@ -302,13 +306,13 @@ function closeLogin(e?: any) {
     tw`lg:${left}`,
   );
 
-  document.getElementById("form")?.classList.remove(
-    tw`${top}`,
-    tw`${down}`,
-  );
-  document.getElementById("form")?.classList.add(
-    tw`${top}`,
-  );
+  // document.getElementById("form")?.classList.remove(
+  //   tw`${top}`,
+  //   tw`${down}`,
+  // );
+  // document.getElementById("form")?.classList.add(
+  //   tw`${top}`,
+  // );
 
   document.getElementById("formRegister")?.classList.remove(
     tw`${up}`,

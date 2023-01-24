@@ -17,7 +17,7 @@ export default function UserData() {
   });
 
   return (
-    <div>
+    <div class="m-4">
       <div>{userID}</div>
       <div>{firstName}</div>
       <div>{lastName}</div>

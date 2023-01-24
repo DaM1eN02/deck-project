@@ -15,7 +15,7 @@ export default function Input({ id, label, type }: InputProps) {
   return (
     <div
       id={id}
-      class="relative w-9/12 m-6 flex justify-center"
+      class="relative h-1/12 w-9/12 m-5 flex justify-center text-xs"
       onfocusin={() => {
         document.getElementById(id + "span")?.classList.add(
           tw`${moveUp}`,
@@ -32,7 +32,7 @@ export default function Input({ id, label, type }: InputProps) {
     >
       <input
         id={id + "input"}
-        class="p-2 w-full bg-red-600 rounded-3xl"
+        class="p-2 h-1/12 w-full bg-red-600 rounded-3xl"
         type={type}
       >
       </input>

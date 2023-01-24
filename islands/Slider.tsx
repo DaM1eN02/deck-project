@@ -41,7 +41,7 @@ export default function Slider() {
       class={tw`flex content-center bg-cover bg-center`}
     >
       <div
-        class="w-1/12 grid content-center justify-center hover:sm:border cursor-pointer"
+        class="z-10 w-1/12 grid content-center justify-center hover:sm:border cursor-pointer"
         onClick={() => {
           document.getElementById(`slide${rightIndex}`)?.classList.remove(
             tw`${rightPicture}`,
@@ -194,13 +194,13 @@ function Card({ slide, currentIndex, leftIndex, rightIndex }: SlideProps) {
       style={"background-image:url(" + slide.image + ")"}
     >
       <div class="p-2" style={"background-color: rgba(255, 255, 255, 0.75)"}>
-        <div class="text-4xl">{slide.title}</div>
-        <hr></hr>
-        <div class="text-3xl">{slide.subtitle}</div>
-        <div class="text-1xl">{slide.description}</div>
+        <div class="text-bold text-3xl">{slide.title}</div>
+        <hr class="border-black border-2"></hr>
+        <div class="text-bold text-2xl">{slide.subtitle}</div>
+        <div class="text-md">{slide.description}</div>
       </div>
       <div
-        class={tw`flex justify-center self-end`}
+        class={tw`h-fill flex justify-center place-self-center`}
       >
         <a class="bg-white" href={`/event/${slide.id}`}>Zum Angebot</a>
       </div>

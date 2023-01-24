@@ -53,11 +53,11 @@ export default function Header({ fixed }: Props) {
       id="header"
       class={tw`${
         fixed ? "fixed" : ""
-      } ${height} z-20 flex justify-around items-center w-screen text-white overflow-x-hidden`}
+      } ${height} z-20 flex justify-around items-center w-screen text-white overflow-x-hidden text-xs sm:text-sm md:text-md lg:text-lg xl:text-xl 2xl-text-2xl`}
       style={"background-color: rgba(0, 0, 0, 0.5)"}
     >
       <a href="/">
-        <h1 class="font-bold text-xs sm:text-sm md:text-md lg:text-lg xl:text-xl 2xl-text-2xl">
+        <h1 class="font-bold text-md sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl-text-4xl">
           Ticket4You
         </h1>
       </a>
