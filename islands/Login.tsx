@@ -4,7 +4,6 @@ import { close, open } from "./Header.tsx";
 import * as uuid from "https://deno.land/std@0.168.0/uuid/mod.ts";
 import Input from "../components/Input.tsx";
 import { http } from "../fetch.ts";
-import { User } from "../routes/index.tsx";
 import { createCookie } from "../cookie.ts";
 
 const left = css({

@@ -44,7 +44,7 @@ function Event(slide: EventType) {
   return (
     <div class="w-10/12 h-64 m-auto border flex items-center gap-8 odd:flex-row even:flex-row-reverse">
       <iframe
-        class="h-5/6 aspect-square rounded-full bg-center hover:scale-125 transition ease-out duration-500"
+        class="h-5/6 rounded-full bg-cover hover:scale-125 transition ease-out duration-500"
         style={`background-image:url(${slide.image}); aspect-ratio: 1 / 1`}
       >
       </iframe>

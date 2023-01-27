@@ -9,14 +9,17 @@ import * as $2 from "./routes/event/[eventID].tsx";
 import * as $3 from "./routes/index.tsx";
 import * as $4 from "./routes/profile.tsx";
 import * as $5 from "./routes/search/[string].tsx";
+import * as $6 from "./routes/ticketmanager.tsx";
+import * as $7 from "./routes/ticketscanner.tsx";
 import * as $$0 from "./islands/Calendar.tsx";
 import * as $$1 from "./islands/Footer.tsx";
 import * as $$2 from "./islands/Header.tsx";
 import * as $$3 from "./islands/Login.tsx";
 import * as $$4 from "./islands/Scanner.tsx";
-import * as $$5 from "./islands/Slider.tsx";
-import * as $$6 from "./islands/TicketGrid.tsx";
-import * as $$7 from "./islands/UserData.tsx";
+import * as $$5 from "./islands/ScannerPopup.tsx";
+import * as $$6 from "./islands/Slider.tsx";
+import * as $$7 from "./islands/TicketGrid.tsx";
+import * as $$8 from "./islands/UserData.tsx";
 
 const manifest = {
   routes: {
@@ -26,6 +29,8 @@ const manifest = {
     "./routes/index.tsx": $3,
     "./routes/profile.tsx": $4,
     "./routes/search/[string].tsx": $5,
+    "./routes/ticketmanager.tsx": $6,
+    "./routes/ticketscanner.tsx": $7,
   },
   islands: {
     "./islands/Calendar.tsx": $$0,
@@ -33,9 +38,10 @@ const manifest = {
     "./islands/Header.tsx": $$2,
     "./islands/Login.tsx": $$3,
     "./islands/Scanner.tsx": $$4,
-    "./islands/Slider.tsx": $$5,
-    "./islands/TicketGrid.tsx": $$6,
-    "./islands/UserData.tsx": $$7,
+    "./islands/ScannerPopup.tsx": $$5,
+    "./islands/Slider.tsx": $$6,
+    "./islands/TicketGrid.tsx": $$7,
+    "./islands/UserData.tsx": $$8,
   },
   baseUrl: import.meta.url,
   config,

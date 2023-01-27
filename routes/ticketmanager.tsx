@@ -6,14 +6,11 @@ const height = css({
   height: "calc(100% - (66.6% * 0.166) - 8rem)",
 });
 
-export default function B2B() {
+export default function TicketManager() {
   return (
-    <div id="bg" class={tw`h-screen overflow-x-hidden select-none`}>
+    <div>
       <Header></Header>
-      <div class={tw`grid grid-cols-2 ${height}`}>
-        <a href="/ticketmanager">Ticket Manager</a>
-        <a href="/ticketscanner">Ticket Scanner</a>
-      </div>
+      <div class={tw`${height}`}></div>
       <Footer></Footer>
     </div>
   );

@@ -104,15 +104,6 @@ export const events: EventType[] = [
   },
   {
     id: "12",
-    name: "Luvre 47 Deutschland-Tour",
-    country: "Deutschland",
-    description:
-      "Luvre47 ab November live in ausgewählten Städten in Deutschland erleben!",
-    image:
-      "https://cdnaz.allevents.in/events10/banners/d072fba949b8b0807de174a9e035aba0026b96cc96b3bb65c4bd28e46f1db54d-rimg-w960-h541-gmir.jpg?v=1673479981",
-  },
-  {
-    id: "13",
     name: "FC Bayern Heimspiele Allianz Arena",
     country: "Deutschland",
     description: "Erleben Sie die Stars des FCBs live in der Allianz Arena!",
@@ -120,7 +111,7 @@ export const events: EventType[] = [
       "https://sportlockerdotcom.files.wordpress.com/2012/04/allianz-arena-red-lightning-bayern-munich-colours.jpg?w=490",
   },
   {
-    id: "14",
+    id: "13",
     name: "Heimspiele SV Schefflenz",
     country: "Deutschland",
     description: "Hautnah im berühmten Hexenkessel des SV Schefflenz!",
@@ -128,7 +119,7 @@ export const events: EventType[] = [
       "https://www.europlan-online.de/files/a9a5a5975041349db8a6e89ec8c6de1b.jpg",
   },
   {
-    id: "15",
+    id: "14",
     name: "Freibad FaMos",
     country: "Deutschland",
     description: "die größte Freizeiteinrichtung im Neckar-Odenwald-Kreis",
@@ -136,7 +127,7 @@ export const events: EventType[] = [
       "https://www.rnz.de/cms_media/module_img/862/431310_1_detaillg_image_1fa877f169b8177c.webp",
   },
   {
-    id: "16",
+    id: "15",
     name: "We love MMA 64",
     country: "Deutschland",
     description:
@@ -144,7 +135,7 @@ export const events: EventType[] = [
     image: "https://gemmaf.de/wp-content/uploads/2022/10/WLMMA64.jpeg",
   },
   {
-    id: "17",
+    id: "16",
     name: "Stadtlauf Mosbach 2023",
     country: "Deutschland",
     description: "20. Auflage des beliebten Mosbacher Stadtlaufs",
