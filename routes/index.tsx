@@ -30,7 +30,7 @@ export default function Home() {
           <Slider></Slider>
         </div>
       </div>
-      <div class="m-8">
+      <div class="grid gap-2 p-5">
         {events.map((event) => {
           return <Event {...event}></Event>;
         })}
@@ -42,17 +42,20 @@ export default function Home() {
 
 function Event(slide: EventType) {
   return (
-    <div class="w-10/12 h-64 m-auto border flex items-center gap-8 odd:flex-row even:flex-row-reverse">
+    <a
+      href={`/event/${slide.id}`}
+      class="w-11/12 h-64 m-auto border flex items-center gap-5 p-5 odd:flex-row even:flex-row-reverse"
+    >
       <iframe
         class="h-5/6 rounded-full bg-cover hover:scale-125 transition ease-out duration-500"
         style={`background-image:url(${slide.image}); aspect-ratio: 1 / 1`}
       >
       </iframe>
-      <div class="flex flex-col items-center">
+      <div class="flex flex-col items-center mx-5">
         <div class="pointer-events-none">{slide.name}</div>
         <div>{slide.country}</div>
         <div>{slide.description}</div>
       </div>
-    </div>
+    </a>
   );
 }

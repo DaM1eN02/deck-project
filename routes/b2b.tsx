@@ -10,9 +10,21 @@ export default function B2B() {
   return (
     <div id="bg" class={tw`h-screen overflow-x-hidden select-none`}>
       <Header></Header>
-      <div class={tw`grid grid-cols-2 ${height}`}>
-        <a href="/ticketmanager">Ticket Manager</a>
-        <a href="/ticketscanner">Ticket Scanner</a>
+      <div
+        class={tw`grid grid-cols-2 text-center p-5 gap-5 ${height}`}
+      >
+        <a
+          href="/b2b/ticketmanager"
+          class="h-full grid justify-center items-center bg-blue-200 rounded"
+        >
+          <div>Ticket Manager</div>
+        </a>
+        <a
+          href="/b2b/ticketscanner"
+          class="h-full grid justify-center items-center bg-blue-200 rounded"
+        >
+          <div>Ticket Scanner</div>
+        </a>
       </div>
       <Footer></Footer>
     </div>

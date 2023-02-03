@@ -4,13 +4,13 @@
 
 import config from "./deno.json" assert { type: "json" };
 import * as $0 from "./routes/b2b.tsx";
-import * as $1 from "./routes/calendar.tsx";
-import * as $2 from "./routes/event/[eventID].tsx";
-import * as $3 from "./routes/index.tsx";
-import * as $4 from "./routes/profile.tsx";
-import * as $5 from "./routes/search/[string].tsx";
-import * as $6 from "./routes/ticketmanager.tsx";
-import * as $7 from "./routes/ticketscanner.tsx";
+import * as $1 from "./routes/b2b/ticketmanager.tsx";
+import * as $2 from "./routes/b2b/ticketscanner.tsx";
+import * as $3 from "./routes/calendar.tsx";
+import * as $4 from "./routes/event/[eventID].tsx";
+import * as $5 from "./routes/index.tsx";
+import * as $6 from "./routes/profile.tsx";
+import * as $7 from "./routes/search/[string].tsx";
 import * as $$0 from "./islands/Calendar.tsx";
 import * as $$1 from "./islands/Footer.tsx";
 import * as $$2 from "./islands/Header.tsx";
@@ -24,13 +24,13 @@ import * as $$8 from "./islands/UserData.tsx";
 const manifest = {
   routes: {
     "./routes/b2b.tsx": $0,
-    "./routes/calendar.tsx": $1,
-    "./routes/event/[eventID].tsx": $2,
-    "./routes/index.tsx": $3,
-    "./routes/profile.tsx": $4,
-    "./routes/search/[string].tsx": $5,
-    "./routes/ticketmanager.tsx": $6,
-    "./routes/ticketscanner.tsx": $7,
+    "./routes/b2b/ticketmanager.tsx": $1,
+    "./routes/b2b/ticketscanner.tsx": $2,
+    "./routes/calendar.tsx": $3,
+    "./routes/event/[eventID].tsx": $4,
+    "./routes/index.tsx": $5,
+    "./routes/profile.tsx": $6,
+    "./routes/search/[string].tsx": $7,
   },
   islands: {
     "./islands/Calendar.tsx": $$0,

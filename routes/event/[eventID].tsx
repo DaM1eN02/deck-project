@@ -36,15 +36,15 @@ export default function Event(props: PageProps) {
     setElement(
       <div>
         <div>
-          Mit <b>45 Lift- und Seilbahnanlagen</b> und{" "}
-          <b>über 239km best präparierten Pisten</b>{" "}
+          Mit <b class="text-blue-400">45 Lift- und Seilbahnanlagen</b> und{" "}
+          <b class="text-blue-400">über 239km best präparierten Pisten</b>{" "}
           gilt Ischgl als ein Mekka für Skifahrer und Snowboarder. Die Arena
           verbindet Ischgl mit dem schweizer Zollausschlussgebiet Samnaun.
         </div>
         <br></br>
         <div>
           Das Hauptskigebiet (90%) liegt zwischen{" "}
-          <b>2.000 m und 2.872 m Höhe</b>{" "}
+          <b class="text-blue-400">2.000 m und 2.872 m Höhe</b>{" "}
           und ermöglicht aufgrund der schneesicheren Nordhänge Skivergnügen von
           Ende November bis Anfang Mai.
         </div>
@@ -57,18 +57,19 @@ export default function Event(props: PageProps) {
     <div class="font-mono h-screen overflow-x-hidden select-none">
       <Header></Header>
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
-        <div class="grid gap-3 p-5">
+        <div class="flex flex-col p-5">
           <iframe
-            class="w-3/4 bg-cover"
+            class="w-3/4 bg-cover mb-5"
             style={`background-image:url(${event.image}); aspect-ratio: 1 / 1`}
           >
           </iframe>
-          <div class="font-bold">{event.name}</div>
-          <div class="font-bold">{event.country}</div>
-          <div class="font-bold">{event.description}</div>
+          <div class="font-bold mb-5">
+            {event.name} / {event.country}
+          </div>
+          <div class="mb-5">{event.description}</div>
           {element}
         </div>
-        <div class="col-span-2 p-5">
+        <div class="grid col-span-2 p-5 gap-5">
           <Option
             title="Saisonpass 2022 / 23 - Erwachsene"
             description="Unbegrenzt gültig innerhalb der Hauptsaison an allen Anlagen in Ischgl / Samnaun"
@@ -110,16 +111,16 @@ type options = {
 
 function Option({ title, description, price }: options) {
   return (
-    <div class="grid grid-rows-2 sm:grid-cols-3 border leading-relaxed m-5">
+    <div class="grid grid-rows-2 sm:grid-rows-1 grid-cols-1 sm:grid-cols-3 border leading-relaxed p-5">
       <div class="grid grid-rows-2 col-span-2">
         <div class="text-2xl">{title}</div>
         <div>{description}</div>
       </div>
-      <div class="grid sm:grid-cols-2">
+      <div class="grid grid-cols-2">
         <div class="flex justify-center items-center">
-          <div>{price}</div>
+          <div class="text-blue-400">{price}</div>
         </div>
-        <button>Kaufen</button>
+        <button class="border">Kaufen</button>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
-import Footer from "../islands/Footer.tsx";
-import Header from "../islands/Header.tsx";
-import Scanner from "../islands/Scanner.tsx";
-import ScannerPopup from "../islands/ScannerPopup.tsx";
+import Footer from "../../islands/Footer.tsx";
+import Header from "../../islands/Header.tsx";
+import Scanner from "../../islands/Scanner.tsx";
+import ScannerPopup from "../../islands/ScannerPopup.tsx";
 import { css, tw } from "twind/css";
 
 const height = css({

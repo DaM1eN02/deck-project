@@ -185,7 +185,7 @@ function Card({ slide, currentIndex, leftIndex, rightIndex }: SlideProps) {
   return (
     <div
       id={"slide" + slide.id}
-      class={tw`w-3/5 sm:w-2/5 lg:w-1/5 h-2/3 p-2 flex bg-cover absolute transition-all ease-in-out duration-700 ${
+      class={tw`w-3/5 sm:w-2/5 lg:w-1/5 h-2/3 p-2 cursor-pointer flex bg-cover absolute transition-all ease-in-out duration-700 ${
         (slide.id != leftIndex && slide.id != currentIndex &&
             slide.id != rightIndex)
           ? nonePicture
@@ -194,17 +194,15 @@ function Card({ slide, currentIndex, leftIndex, rightIndex }: SlideProps) {
         slide.id == currentIndex ? centerPicture : ""
       } ${slide.id == rightIndex ? rightPicture : ""}`}
       style={"background-image:url(" + slide.image + ")"}
+      onClick={() => {
+        window.location.href = `/event/${slide.eventID}`;
+      }}
     >
       <div class="p-2" style={"background-color: rgba(255, 255, 255, 0.75)"}>
         <div class="text-bold text-3xl">{slide.title}</div>
         <hr class="border-black border-2"></hr>
         <div class="text-bold text-2xl">{slide.subtitle}</div>
         <div class="text-md">{slide.description}</div>
-      </div>
-      <div
-        class={tw`h-fill flex justify-center place-self-center`}
-      >
-        <a class="bg-white" href={`/event/${slide.eventID}`}>Zum Angebot</a>
       </div>
     </div>
   );

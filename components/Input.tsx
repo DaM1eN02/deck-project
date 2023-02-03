@@ -32,13 +32,13 @@ export default function Input({ id, label, type }: InputProps) {
     >
       <input
         id={id + "input"}
-        class="p-2 h-1/12 w-full bg-red-600 rounded-3xl"
+        class="p-2 h-1/12 w-full bg-blue-200 rounded-3xl"
         type={type}
       >
       </input>
       <span
         id={id + "span"}
-        class={tw`absolute top-0 left-0 p-2 bg-red-400 rounded-3xl transition-all ease-in-out duration-500 cursor-text`}
+        class={tw`absolute top-0 left-0 p-2 bg-blue-400 rounded-3xl transition-all ease-in-out duration-500 cursor-text`}
         onClick={() => {
           document.getElementById(id + "input")?.focus();
         }}

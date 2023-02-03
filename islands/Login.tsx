@@ -98,10 +98,10 @@ export default function Login() {
         >
           {contents.map((content) => {
             return (
-              <div>
-                <div class="m-4">{content.text}</div>
+              <div class="text-blue-600">
+                <div class="m-5">{content.text}</div>
                 <button
-                  class="m-4 border"
+                  class="m-5 rounded bg-blue-200"
                   onClick={content.onClick}
                 >
                   {content.buttonText}
@@ -168,12 +168,12 @@ function LoginForm() {
           createCookie("bday", (await res).birthdate, 30);
           window.location.href = "/";
         }}
-        class="border"
+        class="bg-blue-200 rounded"
       >
         Log in
       </button>
       <button
-        class="mt-5 lg:hidden"
+        class="mt-5 b-blue-200 rounded lg:hidden"
         onClick={() => {
           switchLoginToRegister();
         }}
@@ -249,12 +249,12 @@ function RegisterForm() {
           createCookie("bday", (await res).birthdate, 30);
           window.location.href = "/";
         }}
-        class="border"
+        class="bg-blue-200 rounded"
       >
         Register
       </button>
       <button
-        class="mt-5 lg:hidden"
+        class="mt-5 bg-blue-200 rounded lg:hidden"
         onClick={() => {
           switchRegisterToLogin();
         }}
