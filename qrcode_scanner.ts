@@ -57,13 +57,13 @@ async function onResult(result: string, qrScanner: QrScanner) {
     );
 
     const firstName = document.createElement("div");
-    firstName.append(obj.Owner.first_name);
+    firstName.append(`First Name: ${obj.Owner.first_name}`);
 
     const lastName = document.createElement("div");
-    lastName.append(obj.Owner.last_name);
+    lastName.append(`Last Name: ${obj.Owner.last_name}`);
 
     const bday = document.createElement("div");
-    bday.append(obj.Owner.birthdate);
+    bday.append(`Born: ${obj.Owner.birthdate}`);
 
     userData.append(firstName, lastName, bday);
 
@@ -97,23 +97,15 @@ async function onResult(result: string, qrScanner: QrScanner) {
     const userData = document.createElement("div");
     userData.append(obj.Error);
 
-    const button1 = document.createElement("button");
-    button1.textContent = "Try Again";
-    button1.onclick = () => {
+    const button = document.createElement("button");
+    button.textContent = "Try Again";
+    button.onclick = () => {
       doc.style.background = "#ffffff";
       popBg.classList.toggle("hidden");
       qrScanner.start();
     };
 
-    const button2 = document.createElement("button");
-    button2.textContent = "Try Again";
-    button2.onclick = () => {
-      doc.style.background = "#ffffff";
-      popBg.classList.toggle("hidden");
-      qrScanner.start();
-    };
-
-    element.append(title, userData, button1, button2);
+    element.append(title, userData, button);
     pop.appendChild(element);
   }
 }

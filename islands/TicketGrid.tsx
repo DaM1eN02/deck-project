@@ -32,12 +32,14 @@ export default function TicketGrid() {
   const [userID, setUserID] = useState("0");
 
   useEffect(() => {
-    setUserID(readCookie("userID") ?? "0");
+    if (readCookie("userID") != userID) {
+      setUserID(readCookie("userID") ?? "0");
+    }
     refreshResults(setResults, userID);
   });
 
   return (
-    <div class="w-9/12 m-auto grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 justify-items-center gap-8">
+    <div class="w-9/12 m-auto grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 justify-items-center gap-8">
       {results.map((ticket: TicketType) => {
         const event = events.find((event) => {
           if (event.name == ticket.eventName) return event;

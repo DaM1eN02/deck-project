@@ -9,7 +9,7 @@ const height = css({
 
 export default function TicketManager() {
   return (
-    <div class="h-screen overflow-x-hidden select-none">
+    <div class="font-mono h-screen overflow-x-hidden select-none">
       <Header></Header>
       <div class={tw`grid grid-rows-3 p-5 ${height}`}>
         <div class="grid justify-center items-center">
@@ -24,7 +24,7 @@ export default function TicketManager() {
         </div>
         <div class="grid grid-cols-2 gap-5">
           <button
-            class="border bg-blue-200"
+            class="rounded bg-blue-200"
             onClickCapture={() => {
               console.log(1);
             }}
@@ -32,7 +32,7 @@ export default function TicketManager() {
             Ticket aktivieren
           </button>
           <button
-            class="border bg-blue-200"
+            class="rounded bg-blue-200"
             onClick={() => {
               console.log(2);
             }}

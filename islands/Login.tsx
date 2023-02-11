@@ -72,7 +72,7 @@ export default function Login() {
       switchRegisterToLogin();
     },
   }, {
-    text: "Don't hava an account?",
+    text: "Don't have an account?",
     buttonText: "Register",
     onClick: () => {
       switchLoginToRegister();

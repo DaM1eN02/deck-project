@@ -8,7 +8,7 @@ const height = css({
 
 export default function B2B() {
   return (
-    <div id="bg" class={tw`h-screen overflow-x-hidden select-none`}>
+    <div id="bg" class={tw`font-mono h-screen overflow-x-hidden select-none`}>
       <Header></Header>
       <div
         class={tw`grid grid-cols-2 text-center p-5 gap-5 ${height}`}
