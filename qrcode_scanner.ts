@@ -33,6 +33,7 @@ async function onResult(result: string, qrScanner: QrScanner) {
   if (!pop) return;
 
   if (obj.active == true) {
+    pop.replaceChildren();
     doc.style.background = "#55ee55";
 
     popBg.classList.toggle("hidden");
@@ -74,14 +75,6 @@ async function onResult(result: string, qrScanner: QrScanner) {
     button.onclick = () => {
       doc.style.background = "#ffffff";
       popBg.classList.toggle("hidden");
-      const qrScanner = new QrScanner(
-        document.getElementById("scanner"),
-        (result: { data: string }) => onResult(result.data, qrScanner),
-        {
-          /* your options or returnDetailedScanResult: true if you're not specifying any other options */
-        },
-      );
-
       qrScanner.start();
     };
 
@@ -97,6 +90,7 @@ async function onResult(result: string, qrScanner: QrScanner) {
     element.append(title, userData, button, deactivate);
     pop.appendChild(element);
   } else {
+    pop.replaceChildren();
     doc.style.background = "#ee5555";
 
     popBg.classList.toggle("hidden");
@@ -121,14 +115,6 @@ async function onResult(result: string, qrScanner: QrScanner) {
     button.onclick = () => {
       doc.style.background = "#ffffff";
       popBg.classList.toggle("hidden");
-      const qrScanner = new QrScanner(
-        document.getElementById("scanner"),
-        (result: { data: string }) => onResult(result.data, qrScanner),
-        {
-          /* your options or returnDetailedScanResult: true if you're not specifying any other options */
-        },
-      );
-
       qrScanner.start();
     };
 
