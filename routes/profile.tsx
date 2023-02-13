@@ -10,10 +10,7 @@ export default function Profile() {
       <div class="m-2">
         <div class="flex">
           <div>
-            <div
-              class="h-64 w-64 rounded-full bg-center bg-cover"
-              style={`background-image: url("/franke.jpeg")`}
-            >
+            <div class="h-64 w-64 rounded-full bg-center bg-cover">
             </div>
           </div>
           <UserData></UserData>
