@@ -146,7 +146,8 @@ export const events: EventType[] = [
     id: "17",
     name: "Tomorrowland",
     country: "Belgien",
-    description: "Test",
+    description:
+      "Eines der größten moderenen Musikfestivals in Europa und der Welt",
     image: "https://wallpaperset.com/w/full/1/9/7/195850.jpg",
   },
 ];
