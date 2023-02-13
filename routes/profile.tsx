@@ -18,8 +18,8 @@ export default function Profile() {
           </div>
           <UserData></UserData>
         </div>
-        <div class="m-10">
-          <h1>My Tickets</h1>
+        <div class="grid gap-5 p-5">
+          <b>My Tickets</b>
           <TicketGrid></TicketGrid>
         </div>
       </div>

@@ -142,4 +142,11 @@ export const events: EventType[] = [
     image:
       "https://www.rnz.de/cms_media/module_img/2284/1142298_1_detail_image_6c4b8306f292eb0.jpg",
   },
+  {
+    id: "17",
+    name: "Tomorrowland",
+    country: "Belgien",
+    description: "Test",
+    image: "https://wallpaperset.com/w/full/1/9/7/195850.jpg",
+  },
 ];

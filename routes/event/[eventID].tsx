@@ -94,7 +94,9 @@ export default function Event(props: PageProps) {
             price="420,00 €"
           >
           </Option>
-          <button class="float-right border border-black">Zum Warenkorb</button>
+          <button class="float-right border border-black">
+            Zum Warenkorb
+          </button>
         </div>
       </div>
       <Footer></Footer>

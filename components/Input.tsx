@@ -34,6 +34,8 @@ export default function Input({ id, label, type }: InputProps) {
         id={id + "input"}
         class="p-2 h-1/12 w-full bg-blue-200 rounded-3xl"
         type={type}
+        label={label}
+        placeholder={label}
       >
       </input>
       <span

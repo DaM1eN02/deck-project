@@ -18,11 +18,10 @@ export default function UserData() {
 
   return (
     <div class="m-4">
-      <div>{userID}</div>
-      <div>{firstName}</div>
-      <div>{lastName}</div>
-      <div>{email}</div>
-      <div>{bday}</div>
+      <div>First Name: {firstName}</div>
+      <div>Last Name: {lastName}</div>
+      <div>E-Mail: {email}</div>
+      <div>Birthday: {bday}</div>
     </div>
   );
 }

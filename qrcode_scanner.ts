@@ -1,3 +1,4 @@
+import { http } from "./fetch.ts";
 import QrScanner from "./node_modules/qr-scanner/qr-scanner.min.js";
 
 export async function scan() {
@@ -15,6 +16,7 @@ export async function scan() {
 }
 
 async function onResult(result: string, qrScanner: QrScanner) {
+  console.log(result);
   qrScanner.stop();
   const res = await fetch(
     `https://ticket4youdhbw.onrender.com/api/ticket/status/${result}`,
@@ -72,10 +74,27 @@ async function onResult(result: string, qrScanner: QrScanner) {
     button.onclick = () => {
       doc.style.background = "#ffffff";
       popBg.classList.toggle("hidden");
+      const qrScanner = new QrScanner(
+        document.getElementById("scanner"),
+        (result: { data: string }) => onResult(result.data, qrScanner),
+        {
+          /* your options or returnDetailedScanResult: true if you're not specifying any other options */
+        },
+      );
+
       qrScanner.start();
     };
 
-    element.append(title, userData, button);
+    const deactivate = document.createElement("button");
+    deactivate.textContent = "Deactivate Ticket";
+    deactivate.onclick = () => {
+      console.log(http(
+        `https://ticket4youdhbw.onrender.com/api/ticket/deactivate/${result}`,
+        "POST",
+      ));
+    };
+
+    element.append(title, userData, button, deactivate);
     pop.appendChild(element);
   } else {
     doc.style.background = "#ee5555";
@@ -102,6 +121,14 @@ async function onResult(result: string, qrScanner: QrScanner) {
     button.onclick = () => {
       doc.style.background = "#ffffff";
       popBg.classList.toggle("hidden");
+      const qrScanner = new QrScanner(
+        document.getElementById("scanner"),
+        (result: { data: string }) => onResult(result.data, qrScanner),
+        {
+          /* your options or returnDetailedScanResult: true if you're not specifying any other options */
+        },
+      );
+
       qrScanner.start();
     };
 
